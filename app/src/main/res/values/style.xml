@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RoundedButton">
+        <item name="android:background">@drawable/rounded_button</item> <!-- Aplicar el drawable con bordes redondeados -->
+        <item name="android:textColor">@color/white</item> <!-- Color del texto -->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="RoundCornerShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="WhiteText">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="WhiteText2">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item> <!-- Tamaño de texto más pequeño -->
+    </style>
+
+    <style name="HintStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/white</item> <!-- Color del borde -->
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <!-- Estilo para el botón de login -->
+    <style name="LoginButton">
+        <item name="android:background">@color/teal_200</item> <!-- Color de fondo -->
+        <item name="android:textColor">@color/black</item> <!-- Color de texto -->
+        <item name="cornerFamily">rounded</item> <!-- Borde redondeado -->
+        <item name="cornerSize">10dp</item> <!-- Tamaño del borde -->
+    </style>
+    <!-- Estilo para el botón de Cancel -->
+    <style name="CancelButton">
+        <item name="android:background">@color/gray_700</item> <!-- Color de fondo -->
+        <item name="android:textColor">@color/white</item> <!-- Color de texto -->
+        <item name="cornerFamily">rounded</item> <!-- Borde redondeado -->
+        <item name="cornerSize">10dp</item> <!-- Tamaño del borde -->
+    </style>
+</resources>

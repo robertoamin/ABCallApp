@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="tipo_pqr_opciones">
+        <item>Petición</item>
+        <item>Queja</item>
+        <item>Reclamo</item>
+    </string-array>
+</resources>

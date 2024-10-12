@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:name="com.example.abcallapp.ui.home.HomeFragment"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:iconTint="@color/white"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_chatbot"
+        android:name="com.example.abcallapp.ui.chatbot.ChatbotFragment"
+        android:icon="@android:drawable/stat_notify_chat"
+        android:iconTint="@color/white"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.abcallapp.ui.notifications.NotificationsFragment"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:iconTint="@color/white"
+        android:title="@string/title_notifications" />
+
+</menu>

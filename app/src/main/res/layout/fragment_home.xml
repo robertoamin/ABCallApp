@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_500"
+    tools:context=".ui.home.HomeFragment">
+
+    <!-- Imagen de fondo que cubre toda la pantalla -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_appchat2"
+        android:alpha="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- RecyclerView para el listado de PQRs -->
+
+
+    <!-- Cuadro de texto para el chatbot "#80FFFFFF"-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pqrRecyclerView"
+        android:layout_width="388dp"
+        android:layout_height="403dp"
+        android:background="@color/white"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/chatBotEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118"
+        tools:listitem="@layout/item_pqr" />
+
+    <EditText
+        android:id="@+id/chatBotEditText"
+        android:layout_width="293dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/rounded_edittext_background"
+        android:hint="En qué te podemos ayudar hoy?"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:padding="16dp"
+        android:focusable="false"
+        android:clickable="true"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:inputType="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!-- Botón flotante -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/create_pqr_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
+        android:contentDescription="@string/fab_content_desc"
+        android:src="@drawable/add_24px"
+        android:tint="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <!-- Imagen de fondo difuminada -->
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/front_appchat3"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ImageView
+        android:id="@+id/userImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="112dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/foto_usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Nombre del usuario -->
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Usuario"
+        android:textColor="@color/gray_700"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/userImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Correo electrónico -->
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="usuario@ejemplo.com"
+        android:textColor="@color/gray_700"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/userName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Campo Empresa -->
+
+    <TextView
+        android:id="@+id/companyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="9dp"
+        android:text="Empresa"
+
+        android:textColor="@color/gray_700"
+        app:layout_constraintBottom_toTopOf="@+id/communicationLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userEmail" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="378dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="396dp"
+        android:layout_marginBottom="316dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImage">
+
+        <TextView
+            android:id="@+id/currentDateLabel"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Fecha Actual"
+            android:textColor="@color/gray_700" />
+
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="117dp"
+            android:layout_height="match_parent"
+            android:text="dd/mm/yyyy"
+            android:textColor="@color/gray_700" />
+    </LinearLayout>
+
+
+    <!-- Botón para editar información -->
+
+    <TextView
+        android:id="@+id/communicationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comunicación"
+        android:textColor="@color/gray_700"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="88dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/rounded_button"
+        android:text="Editar"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/communicationLabel"
+        app:layout_constraintVertical_bias="0.831" />
+
+    <LinearLayout
+        android:layout_width="378dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="438dp"
+        android:layout_marginBottom="262dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImage">
+
+        <TextView
+            android:id="@+id/currentTimeLabel"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Hora Actual"
+            android:textColor="@color/gray_700"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="432dp" />
+
+        <TextView
+            android:id="@+id/currentTime"
+            android:layout_width="117dp"
+            android:layout_height="match_parent"
+            android:text="hh:mm"
+            android:textColor="@color/gray_700"
+            tools:layout_editor_absoluteX="118dp"
+            tools:layout_editor_absoluteY="425dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
