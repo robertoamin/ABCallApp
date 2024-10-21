@@ -18,13 +18,14 @@ data class PQRResponse(
 //    val status: String
 //)
 data class PQRItem(
-    val client_id: String,
+    val id: Int,
+    val client_id: Int,
     val subject: String,
     val description: String,
     val status: String,
     val date: String,
     val estimated_close_date: String,
-    val user_id: String,
-    val type: String
+    val user_sub: String,
+    val type: String,
+    val communication_type: String
 )
-

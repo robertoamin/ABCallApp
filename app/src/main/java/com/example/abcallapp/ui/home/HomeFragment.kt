@@ -14,6 +14,7 @@ import com.example.abcallapp.data.model.PQRItem
 import com.example.abcallapp.databinding.FragmentHomeBinding
 import com.example.abcallapp.network.ApiClient
 import com.example.abcallapp.network.PQRService
+import com.example.abcallapp.utils.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +54,19 @@ class HomeFragment : Fragment() {
 
     // Esta función realiza la petición de los PQRs al microservicio y configura el RecyclerView
     private fun getPQRs(pqrService: PQRService) {
-        val call = pqrService.getPQRs()
+        // Obtener el idToken de SharedPreferences
+        val userPrefs = UserPreferences.getInstance(requireContext())
+        val idToken = userPrefs.getIdToken()
+
+        // Verificar si el idToken no es nulo
+        if (idToken.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "No se encontró el token de autenticación", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Llamar al servicio PQR con el token de autorización
+        val authHeader = "Bearer $idToken"
+        val call = pqrService.getPQRs(authHeader)
         call.enqueue(object : Callback<List<PQRItem>> {
             override fun onResponse(call: Call<List<PQRItem>>, response: Response<List<PQRItem>>) {
                 if (response.isSuccessful && response.body() != null) {
@@ -73,6 +86,7 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
 
     // Esta función configura el RecyclerView con la lista de PQR obtenida
     private fun setupRecyclerView(pqrList: List<PQRItem>) {
