@@ -37,21 +37,26 @@ class PQRAdapter(
         private val statusTextView: TextView = itemView.findViewById(R.id.pqrStatusTextView)
 
         fun bind(pqrItem: PQRItem) {
-            pqrTextView.text = "${pqrItem.date} ${pqrItem.title}:"
+            pqrTextView.text = "${pqrItem.date} - ${pqrItem.subject}"
 
             // Cambia el color dependiendo del estado
-            if (pqrItem.status == "Abierto") {
-                statusTextView.text = pqrItem.status
-                statusTextView.setTextColor(
-                    ContextCompat.getColor(itemView.context, androidx.appcompat.R.color.material_deep_teal_500)
-                )
-            } else {
-                statusTextView.text = pqrItem.status
-                statusTextView.setTextColor(
-                    ContextCompat.getColor(itemView.context, R.color.red)
-                )
+            when (pqrItem.status.lowercase()) { // Convertimos el texto a minúsculas para hacer la comparación insensible a mayúsculas/minúsculas
+                "open", "abierto" -> {  // Verificamos si el estado es "open" o "abierto"
+                    statusTextView.text = pqrItem.status
+                    statusTextView.setTextColor(
+                        ContextCompat.getColor(itemView.context, androidx.appcompat.R.color.material_deep_teal_500)
+                    )
+                }
+                else -> {
+                    statusTextView.text = pqrItem.status
+                    statusTextView.setTextColor(
+                        ContextCompat.getColor(itemView.context, R.color.red)
+                    )
+                }
             }
+
         }
     }
 }
+
 

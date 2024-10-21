@@ -35,29 +35,21 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp" />
 
-    <!-- Empresa -->
-
-    <!-- Detalle -->
-
-    <!-- Estado -->
-
-    <!-- Fecha estimada de cierre -->
-
-    <!-- Botón flotante -->
+    <!-- Subject -->
     <TextView
-        android:id="@+id/empresaTextView"
+        android:id="@+id/subjectTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="60dp"
-        android:text="Empresa: Claro"
+        android:text="Asunto"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detalleFechaTextView" />
-
+    <!-- Detalle -->
     <TextView
-        android:id="@+id/detallePqrTextView"
+        android:id="@+id/descripcionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -69,8 +61,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/empresaTextView" />
-
+        app:layout_constraintTop_toBottomOf="@id/subjectTextView" />
+    <!-- Estado -->
     <TextView
         android:id="@+id/estadoTextView"
         android:layout_width="wrap_content"
@@ -81,8 +73,8 @@
         android:textColor="@color/teal_200"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detallePqrTextView" />
-
+        app:layout_constraintTop_toBottomOf="@id/descripcionTextView" />
+    <!-- Fecha estimada de cierre -->
     <TextView
         android:id="@+id/fechaCierreTextView"
         android:layout_width="wrap_content"
@@ -94,7 +86,7 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/estadoTextView" />
-
+    <!-- Botón flotante -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/create_pqr_button"
         android:layout_width="wrap_content"

@@ -16,7 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Ingrese el título"
+        android:hint="@string/Titulo_pqr"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:boxBackgroundMode="outline"
@@ -46,7 +46,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="62dp"
         android:layout_marginEnd="16dp"
-        android:hint="¿Qué tipo de PQR es?"
+        android:hint="@string/Tipo_pqr"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:boxBackgroundMode="outline"
@@ -76,7 +76,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
-        android:hint="Descripción"
+        android:hint="@string/Descripcion"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:boxBackgroundMode="outline"
@@ -109,8 +109,7 @@
         android:textColor="@color/white"
         app:backgroundTint="@color/gray_700"
         android:background="@drawable/rounded_button"
-        android:text="Cancelar"
-
+        android:text="@string/Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -124,7 +123,7 @@
         android:textColor="@color/black"
         app:backgroundTint="@color/teal_200"
         android:background="@drawable/rounded_button"
-        android:text="Crear"
+        android:text="@string/Enviar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
