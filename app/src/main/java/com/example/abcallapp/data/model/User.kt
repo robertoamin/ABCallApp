@@ -16,4 +16,9 @@ data class User(
     val cellphone: String?
 )
 
+data class CommunicationTypeUpdate(
+    val communication_type: String
+)
+
+
 
