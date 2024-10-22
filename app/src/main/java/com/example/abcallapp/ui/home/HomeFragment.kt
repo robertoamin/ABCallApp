@@ -12,7 +12,7 @@ import com.example.abcallapp.R
 import com.example.abcallapp.adapters.PQRAdapter
 import com.example.abcallapp.data.model.PQRItem
 import com.example.abcallapp.databinding.FragmentHomeBinding
-import com.example.abcallapp.network.PQRClient
+import com.example.abcallapp.network.ApiClient
 import com.example.abcallapp.network.PQRService
 import com.example.abcallapp.utils.UserPreferences
 import retrofit2.Call
@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Inicializar Retrofit para el servicio de PQRs
-        val pqrService = PQRClient.retrofit.create(PQRService::class.java)
+        val pqrService = ApiClient.retrofit.create(PQRService::class.java)
 
         // Llamar a la función que obtiene los PQRs del microservicio
         getPQRs(pqrService)

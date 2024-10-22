@@ -15,7 +15,6 @@ import com.example.abcallapp.network.ApiClient
 import com.example.abcallapp.network.PQRService
 import com.example.abcallapp.data.model.PQR
 import com.example.abcallapp.data.model.PQRResponse
-import com.example.abcallapp.network.PQRClient
 import com.example.abcallapp.utils.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,7 +43,7 @@ class CreatePQRFragment : Fragment() {
         val idToken = userPreferences.getIdToken()
 
         // Inicializar el servicio de Retrofit
-        pqrService = PQRClient.retrofit.create(PQRService::class.java)
+        pqrService = ApiClient.retrofit.create(PQRService::class.java)
 
         // Configurar adaptador para el AutoCompleteTextView (dropdown de tipos de PQR)
         val tipoPqrOptions = resources.getStringArray(R.array.tipo_pqr_opciones)

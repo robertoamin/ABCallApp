@@ -9,11 +9,11 @@ data class User(
     val cognito_user_sub: String,
     val document_type: String,
     val client_id: Int,
-    val id_number: String,
+    val id_number: String,//string
     val name: String,
     val last_name: String,
-    val communication_type: String,
-    val cellphone: String
+    var communication_type: String,
+    val cellphone: String?
 )
 
 

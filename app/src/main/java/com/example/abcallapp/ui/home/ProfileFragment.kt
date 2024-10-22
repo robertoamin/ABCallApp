@@ -62,7 +62,7 @@ class ProfileFragment : Fragment() {
         if (user != null) {
             Log.d("ProfileFragment", "Datos de usuario recuperados: ${user.name}, ${user.email}")
         } else {
-            Log.e("ProfileFragment", "No se encontró usuario en SharedPreferences")
+            Log.e("ProfileFragment", "No se encontró usuario en SharedPreferences!!!")
         }
 
         // Mostrar los datos del usuario si existen
