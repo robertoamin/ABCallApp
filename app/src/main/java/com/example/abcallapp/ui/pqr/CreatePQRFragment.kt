@@ -1,5 +1,6 @@
 package com.example.abcallapp.ui.pqr
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.abcallapp.network.ApiClient
 import com.example.abcallapp.network.PQRService
 import com.example.abcallapp.data.model.PQR
 import com.example.abcallapp.data.model.PQRResponse
+import com.example.abcallapp.ui.notifications.NotificationManager
 import com.example.abcallapp.utils.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
@@ -93,7 +95,11 @@ class CreatePQRFragment : Fragment() {
                         val pqrResponse = response.body()
                         if (pqrResponse != null && pqrResponse.status == "ok") {
                             Log.d("CreatePQR", "PQR creado exitosamente en el microservicio.")
+                            NotificationManager.addNotification("Nuevo PQR Creado")
+
                             showSuccessDialog()
+
+
                         } else {
                             Log.e("CreatePQR", "Error en la respuesta del servidor: ${pqrResponse?.status}")
                             Toast.makeText(requireContext(), "Error en la creación del PQR", Toast.LENGTH_SHORT).show()
