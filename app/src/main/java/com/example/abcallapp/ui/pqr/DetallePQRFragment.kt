@@ -25,19 +25,19 @@ class DetallePQRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Recibir datos del PQR seleccionado desde HomeFragment (Mock data por ahora)
-        val fecha = arguments?.getString("fecha") ?: "Sept 17, 2024"
-        val empresa = arguments?.getString("empresa") ?: "Claro"
-        val detalle = arguments?.getString("detalle") ?: "Facturación equivocada"
-        val estado = arguments?.getString("estado") ?: "Abierto"
-        val fechaCierre = arguments?.getString("fechaCierre") ?: "20/11/2024"
+        // Recibir los datos del Bundle
+        val subject = arguments?.getString("subject")
+        val fecha = arguments?.getString("fecha")
+        val estado = arguments?.getString("state")
+        val estimatedCloseDate = arguments?.getString("estimated_close_date")
+        val description = arguments?.getString("description")
 
-        // Configurar la vista con los datos
-        binding.detalleFechaTextView.text = fecha
-        binding.empresaTextView.text = "Empresa: $empresa"
-        binding.detallePqrTextView.text = detalle
+        // Asignar los valores a los TextView correspondientes
+        binding.subjectTextView.text = "Asunto: $subject"
+        binding.detalleFechaTextView.text = "Fecha: $fecha"
         binding.estadoTextView.text = "Estado: $estado"
-        binding.fechaCierreTextView.text = "Fecha estimada de cierre: $fechaCierre"
+        binding.fechaCierreTextView.text = "Fecha de cierre estimada: $estimatedCloseDate"
+        binding.descripcionTextView.text = description
 
         // Configurar el botón flotante para navegar al fragmento de creación de PQR
         binding.createPqrButton.setOnClickListener {

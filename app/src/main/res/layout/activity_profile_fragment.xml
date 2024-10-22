@@ -16,8 +16,8 @@
         android:alpha="0.5"
         android:scaleType="centerCrop"
         android:src="@drawable/front_appchat3"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-219dp" />
 
     <ImageView
         android:id="@+id/userImage"
@@ -36,7 +36,8 @@
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre del Usuario"
+        android:text="@string/nombre_usuario"
+        android:textStyle="bold"
         android:textColor="@color/gray_700"
         android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@id/userImage"
@@ -48,120 +49,141 @@
         android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="usuario@ejemplo.com"
+        android:text="@string/prompt_email"
         android:textColor="@color/gray_700"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/userName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Campo Empresa -->
+    <!-- Label para Empresa -->
+    <TextView
+        android:id="@+id/companyLabelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/nombre_empresa"
+        android:textColor="@color/gray_700"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/userEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Nombre de la Empresa -->
     <TextView
         android:id="@+id/companyLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="9dp"
-        android:text="Empresa"
-
+        android:text="@string/nombre_empresa"
         android:textColor="@color/gray_700"
-        app:layout_constraintBottom_toTopOf="@+id/communicationLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/companyLabelTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userEmail" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="378dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="396dp"
-        android:layout_marginBottom="316dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
-        app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
+    <!-- Label para Tipo de Comunicación -->
+    <TextView
+        android:id="@+id/communicationLabelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipo_comunicacion"
+        android:textColor="@color/gray_700"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/companyLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImage">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/currentDateLabel"
-            android:layout_width="140dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Fecha Actual"
-            android:textColor="@color/gray_700" />
-
-        <TextView
-            android:id="@+id/currentDate"
-            android:layout_width="117dp"
-            android:layout_height="match_parent"
-            android:text="dd/mm/yyyy"
-            android:textColor="@color/gray_700" />
-    </LinearLayout>
-
-
-    <!-- Botón para editar información -->
-
+    <!-- Tipo de Comunicación -->
     <TextView
         android:id="@+id/communicationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comunicación"
+        android:text="@string/tipo_comunicacion"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:textColor="@color/gray_700"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintTop_toBottomOf="@id/communicationLabelTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Layout para la Fecha Actual -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/communicationLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/currentDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_date"
+            android:textColor="@color/gray_700" />
+
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:text="dd/mm/yyyy"
+            android:textColor="@color/gray_700" />
+    </LinearLayout>
+
+    <!-- Layout para la Hora Actual -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+        <TextView
+            android:id="@+id/currentTimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_time"
+            android:textColor="@color/gray_700" />
+
+        <TextView
+            android:id="@+id/currentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="HH:mm"
+            android:textStyle="bold"
+            android:textColor="@color/gray_700"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- Botón para editar información -->
     <Button
         android:id="@+id/editButton"
         android:layout_width="88dp"
         android:layout_height="41dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rounded_button"
-        android:text="Editar"
+        android:text="@string/Editar"
         android:textColor="@color/black"
         app:backgroundTint="@color/teal_200"
-        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/communicationLabel"
-        app:layout_constraintVertical_bias="0.831" />
-
-    <LinearLayout
-        android:layout_width="378dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="438dp"
-        android:layout_marginBottom="262dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImage">
-
-        <TextView
-            android:id="@+id/currentTimeLabel"
-            android:layout_width="140dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Hora Actual"
-            android:textColor="@color/gray_700"
-            tools:layout_editor_absoluteX="36dp"
-            tools:layout_editor_absoluteY="432dp" />
-
-        <TextView
-            android:id="@+id/currentTime"
-            android:layout_width="117dp"
-            android:layout_height="match_parent"
-            android:text="hh:mm"
-            android:textColor="@color/gray_700"
-            tools:layout_editor_absoluteX="118dp"
-            tools:layout_editor_absoluteY="425dp" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
+        app:layout_constraintVertical_bias="0.445" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 

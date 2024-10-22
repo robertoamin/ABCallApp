@@ -1,9 +1,11 @@
 package com.example.abcallapp.adapters
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -28,23 +30,28 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
         val chatMessage = messageList[position]
 
         if (chatMessage.isUser) {
-            // Configura el texto del usuario: blanco, alineado a la izquierda
+            // Configura el texto del usuario
             holder.messageTextView.apply {
                 text = chatMessage.text
-                textAlignment = View.TEXT_ALIGNMENT_VIEW_START // Justificado a la izquierda
-                setTextColor(ContextCompat.getColor(context, android.R.color.white)) // Texto blanco
-                holder.messageIcon.visibility = View.VISIBLE // Mostrar icono de chat para el usuario
+                setTextColor(ContextCompat.getColor(context, android.R.color.white))
+                setBackgroundResource(R.drawable.message_background_user)
             }
+            holder.messageIcon.visibility = View.VISIBLE // Mostrar ícono del usuario
+            (holder.itemView as LinearLayout).gravity = Gravity.END // Alinea a la derecha
+
         } else {
-            // Configura el texto del bot: teal, alineado a la derecha
+            // Configura el texto del bot
             holder.messageTextView.apply {
                 text = chatMessage.text
-                textAlignment = View.TEXT_ALIGNMENT_VIEW_END // Justificado a la derecha
-                setTextColor(ContextCompat.getColor(context, R.color.teal_200)) // Texto color teal
-                holder.messageIcon.visibility = View.GONE // No mostrar icono para el bot
+                setTextColor(ContextCompat.getColor(context, R.color.teal_200))
+                setBackgroundResource(R.drawable.message_background_bot)
             }
+            holder.messageIcon.visibility = View.GONE // Ocultar ícono para el bot
+            (holder.itemView as LinearLayout).gravity = Gravity.START // Alinea a la izquierda
         }
     }
+
+
 
     override fun getItemCount(): Int {
         return messageList.size

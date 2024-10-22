@@ -8,7 +8,7 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">"Bienvenido !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="fab_content_desc">agregar</string>
@@ -21,10 +21,10 @@
     <string name="nombre_usuario">Name</string>
     <string name="nombre_empresa">Company</string>
     <string name="tipo_comunicacion">Type of Communication</string>
-    <string name="ingrese_comunicacion">Choose Communication</string>
+    <string name="ingrese_comunicacion">Seleccione Comunicación</string>
     <string name="Editar">Edit</string>
-    <string name="Guardar">Save</string>
     <string name="Enviar">Send</string>
+    <string name="Guardar">Save</string>
     <string name="Cancelar">Cancel</string>
     <string name="Formato_Hora">hh:mm</string>
     <string name="Hora">Actual Time</string>

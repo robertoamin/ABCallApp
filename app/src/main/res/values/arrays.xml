@@ -4,4 +4,10 @@
         <item>Queja</item>
         <item>Reclamo</item>
     </string-array>
+    <string-array name="tipo_comunicacion_opciones">
+        <item>Email</item>
+        <item>Telefono</item>
+        <item>SMS</item>
+        <item>Chat</item>
+    </string-array>
 </resources>

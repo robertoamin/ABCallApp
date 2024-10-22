@@ -33,7 +33,18 @@
         android:id="@+id/profileFragment"
         android:name="com.example.abcallapp.ui.profile.ProfileFragment"
         android:label="Perfil"
-        tools:layout="@layout/activity_profile_fragment"/>
+        tools:layout="@layout/activity_profile_fragment">
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.abcallapp.ui.home.EditProfileFragment"
+        android:label="Modificar Perfil"
+        tools:layout="@layout/activity_edit_profile_fragment" />
+
 
     <fragment
         android:id="@+id/detallePQRFragment"

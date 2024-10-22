@@ -41,7 +41,7 @@
         android:id="@+id/chatbotStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conversación iniciada"
+        android:text="@string/Conversacion"
         android:textColor="@color/teal_200"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/chatbotDate"
@@ -56,47 +56,48 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/chatbotStatus"
-        app:layout_constraintBottom_toTopOf="@+id/chatbotButtonLayout"
+        app:layout_constraintBottom_toTopOf="@+id/chatbotInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/item_chat_message" />
 
-    <!-- Botones Cancelar y Enviar -->
+    <!-- Layout para la entrada de mensajes y el botón Enviar -->
     <LinearLayout
-        android:id="@+id/chatbotButtonLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/chatbotInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
+        android:layout_margin="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Botón Cancelar -->
-        <Button
-            android:id="@+id/cancelButton"
-            style="@style/RoundedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginEnd="16dp"
+
+        <!-- Caja de texto para que el usuario escriba su mensaje -->
+        <EditText
+            android:id="@+id/chatBotEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edittext_background"
+            android:hint="@string/Inicio_chat"
+            android:padding="10dp"
             android:textColor="@color/white"
-            app:backgroundTint="@color/gray_700"
-            android:background="@drawable/rounded_button"
-            android:text="Cancelar" />
+            android:textColorHint="@color/white" />
 
         <!-- Botón Enviar -->
         <Button
             android:id="@+id/sendButton"
-            style="@style/RoundedButton"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/Enviar"
             android:textColor="@color/black"
             app:backgroundTint="@color/teal_200"
-            android:background="@drawable/rounded_button"
-            android:text="Enviar" />
-
+            android:background="@drawable/rounded_button" />
     </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

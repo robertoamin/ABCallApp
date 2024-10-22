@@ -23,15 +23,15 @@
 
     <!-- RecyclerView para el listado de PQRs -->
 
-
-    <!-- Cuadro de texto para el chatbot "#80FFFFFF"-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pqrRecyclerView"
         android:layout_width="388dp"
         android:layout_height="403dp"
         android:background="@color/white"
         android:alpha="0.5"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:scrollbarThumbVertical="@drawable/custom_scrollbar"
         app:layout_constraintBottom_toTopOf="@+id/chatBotEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,13 +39,14 @@
         app:layout_constraintVertical_bias="0.118"
         tools:listitem="@layout/item_pqr" />
 
+    <!-- Cuadro de texto para el chatbot "#80FFFFFF"-->
     <EditText
         android:id="@+id/chatBotEditText"
         android:layout_width="293dp"
         android:layout_height="58dp"
         android:layout_marginBottom="144dp"
         android:background="@drawable/rounded_edittext_background"
-        android:hint="En qué te podemos ayudar hoy?"
+        android:hint="@string/Inicio_chat"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:padding="16dp"
