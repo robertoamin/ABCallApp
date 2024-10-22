@@ -1,22 +1,24 @@
 package com.example.abcallapp.ui.chatbot
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.abcallapp.R
-
 import com.example.abcallapp.adapters.ChatbotAdapter
+import com.example.abcallapp.data.model.*
 import com.example.abcallapp.databinding.FragmentChatbotBinding
-import com.example.abcallapp.data.model.ChatMessage
+import com.example.abcallapp.network.ChatGPTClient
+import com.example.abcallapp.network.ChatGPTService
+import com.example.abcallapp.network.CohereClient
+import com.example.abcallapp.network.CohereService
+import com.example.abcallapp.ui.notifications.NotificationManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,6 +30,9 @@ class ChatbotFragment : Fragment() {
     // Lista de mensajes de la conversación
     private val displayedMessages = mutableListOf<ChatMessage>() // Mensajes mostrados
     private lateinit var adapter: ChatbotAdapter
+
+    // Variable de control para la primera respuesta del bot
+    private var isFirstBotResponse = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +69,7 @@ class ChatbotFragment : Fragment() {
                 binding.chatBotEditText.text.clear()
 
                 // Simular respuesta del bot
-                simulateBotResponse()
+                //simulateBotResponse(userMessage)
             }
         }
 
@@ -111,13 +116,12 @@ class ChatbotFragment : Fragment() {
             binding.chatBotEditText.text.clear()
             binding.chatBotEditText.hint = "" // Eliminar el hint
 
-            // Simular respuesta del bot (mensaje mock)
-            simulateBotResponse()
+            // respuesta del bot (mensaje chatgpt)
+            simulateBotResponse(userMessage)
+            //simulateBotResponse()
 
         }
     }
-
-
 
     // Función para agregar un mensaje a la lista
     private fun addMessage(text: String, isUser: Boolean) {
@@ -127,12 +131,78 @@ class ChatbotFragment : Fragment() {
     }
 
     // Función para simular una respuesta del bot
-    private fun simulateBotResponse() {
-        Handler(Looper.getMainLooper()).postDelayed({
+   // private fun simulateBotResponse() {
+   //     Handler(Looper.getMainLooper()).postDelayed({
             // Añadir una respuesta simple del bot
-            addMessage(getString(R.string.Bot_response), false)
-        }, 1000) // Simula un retraso de 1 segundo
+   //         addMessage(getString(R.string.Bot_response), false)
+   //     }, 1000) // Simula un retraso de 1 segundo
+    //}
+
+    private fun simulateBotResponse(userInput: String) {
+        getBotResponse(userInput)  // Llama a la función que hace la solicitud a ChatGPT
     }
+
+
+    private fun getBotResponse(userInput: String) {
+
+        //val service = ChatGPTClient.retrofit.create(ChatGPTService::class.java)   acceso a servicio de chatGPT
+        val service = CohereClient.retrofit.create(CohereService::class.java)
+
+        val apiKey = "Bearer 4FBgLHiMJTiHygmvXQ7S8Dg967i3Ludqg4xc5tFy"
+        val messages = listOf(
+            ChatGPTMessage("system", "You are a customer service chatbot specialized in complaints, claims, and petitions."),
+            ChatGPTMessage("user", userInput)
+        )
+
+        //val requestBody = ChatGPTRequest(
+        //    model = "gpt-3.5-turbo",
+        //    messages = messages,
+        //    max_tokens = 50  // Limitar el número de tokens
+        //)
+        val requestBody = CohereRequest(
+            prompt = userInput
+        )
+        // Solo generar la notificación en la primera respuesta del bot
+        if (isFirstBotResponse) {
+            NotificationManager.addNotification("Conversación con Bot iniciada")
+            isFirstBotResponse = false // Cambiar el estado para que no se repita
+        }
+
+        //val call = service.sendMessage(apiKey, requestBody)  //modelo chatgpt
+        val call = service.generateMessage(apiKey, requestBody) //modelo cohere
+
+        //call.enqueue(object : Callback<ChatGPTResponse> {
+        //    override fun onResponse(call: Call<ChatGPTResponse>, response: Response<ChatGPTResponse>) {
+        //        if (response.isSuccessful && response.body() != null) {
+        //            val botReply = response.body()!!.choices.first().message.content
+        //            val truncatedReply = botReply.split(" ").take(10).joinToString(" ")  // Limita la respuesta a 10 palabras
+
+//                    addMessage(truncatedReply, false)  // Muestra el mensaje del bot
+//                } else {
+//                    addMessage("Error: No se pudo obtener la respuesta del bot.", false)
+//                }
+//            }
+        // Modelo Cohere
+        call.enqueue(object : Callback<CohereResponse> {
+            override fun onResponse(call: Call<CohereResponse>, response: Response<CohereResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val botReply = response.body()!!.generations.first().text
+                    val truncatedReply = botReply.split(" ").take(20).joinToString(" ") // Limita la respuesta a 10 palabras
+
+                    addMessage(truncatedReply, false)  // Muestra el mensaje del bot
+                } else {
+                    addMessage("Error: No se pudo obtener la respuesta del bot.", false)
+                }
+            }
+
+            override fun onFailure(call: Call<CohereResponse>, t: Throwable) {
+                addMessage("Error: ${t.message}", false)  // Muestra un error si la solicitud falla
+            }
+        })
+
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

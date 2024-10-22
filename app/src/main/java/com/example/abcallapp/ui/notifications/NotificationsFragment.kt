@@ -18,8 +18,6 @@ import java.util.*
 class NotificationsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -47,19 +45,32 @@ class NotificationsFragment : Fragment() {
         // Establecer el mes y año en el TextView
         binding.dateTextView.text = currentMonthYear
 
-        // Simulando una lista de notificaciones
-        val mockNotifications = listOf(
-            NotificationItem(R.drawable.notifications_active_24px, "Nuevo PQR creado"),
-            NotificationItem(R.drawable.notifications_active_24px, "PQR #3 solucionado"),
-            NotificationItem(R.drawable.notifications_active_24px, "Perfil modificado"),
-            NotificationItem(R.drawable.notifications_active_24px, "Conversación registrada"),
-            NotificationItem(R.drawable.notifications_active_24px, "Nuevo PQR creado"),
-            NotificationItem(R.drawable.notifications_active_24px, "PQR #4 solucionado")
-        )
+        // Obtener las notificaciones del NotificationManager
+        val notifications = NotificationManager.getNotifications()
 
-        val adapter = NotificationsAdapter(mockNotifications)
+        // Simulando una lista de notificaciones
+    //    val mockNotifications = listOf(
+    //        NotificationItem(R.drawable.notifications_active_24px, "Nuevo PQR creado"),
+    //        NotificationItem(R.drawable.notifications_active_24px, "PQR #3 solucionado"),
+    //        NotificationItem(R.drawable.notifications_active_24px, "Perfil modificado"),
+    //        NotificationItem(R.drawable.notifications_active_24px, "Conversación registrada"),
+    //        NotificationItem(R.drawable.notifications_active_24px, "Nuevo PQR creado"),
+    //        NotificationItem(R.drawable.notifications_active_24px, "PQR #4 solucionado")
+    //    )
+        val adapter = NotificationsAdapter(notifications)
+        //    val adapter = NotificationsAdapter(mockNotifications)
         binding.notificationsRecyclerView.adapter = adapter
         binding.notificationsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Recargar notificaciones cuando el fragmento se vuelve visible
+        val notifications = NotificationManager.getNotifications()
+        val adapter = NotificationsAdapter(notifications)
+        binding.notificationsRecyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {
