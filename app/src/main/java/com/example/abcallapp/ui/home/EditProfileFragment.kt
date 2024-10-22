@@ -15,6 +15,7 @@ import com.example.abcallapp.network.ApiClient
 import com.example.abcallapp.network.ProfileService
 import com.example.abcallapp.network.UserClient
 import com.example.abcallapp.network.UserService
+import com.example.abcallapp.ui.notifications.NotificationManager
 import com.example.abcallapp.utils.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,6 +50,10 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Establecer el nombre y el email en la UI
+        binding.userName.text = user.name ?: "Nombre no disponible"
+        binding.userEmail.text = user.email ?: "Email no disponible"
 
         binding.tipoComunicacionEditText.setText(user.communication_type)
 
@@ -91,6 +96,8 @@ class EditProfileFragment : Fragment() {
                     userPreferences.saveUser(userModificado)
 
                     Toast.makeText(requireContext(), "Perfil actualizado", Toast.LENGTH_SHORT).show()
+                    NotificationManager.addNotification("Medio de comunicación modificado")
+
                     findNavController().navigateUp() // Regresa al fragmento anterior
                 } else {
                     Toast.makeText(requireContext(), "Error al actualizar el perfil", Toast.LENGTH_SHORT).show()

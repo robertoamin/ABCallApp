@@ -1,6 +1,6 @@
 <resources>
     <string-array name="tipo_pqr_opciones">
-        <item>Petición</item>
+        <item>Peticion</item>
         <item>Queja</item>
         <item>Reclamo</item>
     </string-array>
