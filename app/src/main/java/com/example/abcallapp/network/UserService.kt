@@ -1,6 +1,8 @@
 package com.example.abcallapp.network
 
+import com.example.abcallapp.data.model.CommunicationTypeUpdate
 import com.example.abcallapp.data.model.User
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,9 +17,10 @@ interface UserService {
     @PUT("api/user/me")
     fun editUserCommunication(
         @Header("Authorization") authHeader: String,
-        @Body updatedUser: User  // Cambiamos el cuerpo a un objeto User
-    ): Call<User>
+        @Body communicationTypeUpdate: CommunicationTypeUpdate  // Solo enviar el campo necesario
+    ): Call<ResponseBody>
 }
+
 
 
 
