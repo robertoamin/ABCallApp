@@ -18,6 +18,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Mult
 import com.amazonaws.regions.Regions
 import com.example.abcallapp.R
 import com.example.abcallapp.data.model.User
+import com.example.abcallapp.network.UserClient
 import com.example.abcallapp.network.UserService
 import com.example.abcallapp.ui.home.HomeActivity
 import com.example.abcallapp.utils.UserPreferences
@@ -27,8 +28,7 @@ import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -43,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
         // Vinculando los EditText desde el XML
         usernameInput = findViewById(R.id.usernameEditText)
         passwordInput = findViewById(R.id.passwordEditText)
+
+        //val userPreferences = UserPreferences.getInstance(this)
+        //userPreferences.clearUserData()  // Borra SharedPreferences
 
         // Inicializa el CognitoUserPool
         userPool = CognitoUserPool(
@@ -122,14 +125,10 @@ class LoginActivity : AppCompatActivity() {
         user.getSessionInBackground(authenticationHandler)
     }
 
-    // Función para hacer la llamada GET al microservicio
+    // Función para hacer la llamada GET al microservicio de usuarios
     private fun fetchUserDetails(idToken: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://1acgpw2vfg.execute-api.us-east-1.amazonaws.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        val service = retrofit.create(UserService::class.java)
+        val service = UserClient.retrofit.create(UserService::class.java)  // Uso la instancia ya creada en UserClient
         val authHeader = "Bearer $idToken"  // Usar idToken en lugar de accessToken
 
         val call = service.getUserDetails(authHeader)
@@ -140,10 +139,13 @@ class LoginActivity : AppCompatActivity() {
                     val user = response.body()
                     user?.let {
                         // Registrar todos los detalles del usuario en Logcat
+                        Log.d("UserService", "id: ${it.id}")
+                        Log.d("UserService", "Username: ${it.username}")
+                        Log.d("UserService", "Email: ${it.email}")
                         Log.d("UserService", "Nombre: ${it.name}")
                         Log.d("UserService", "Apellido: ${it.last_name}")
-                        Log.d("UserService", "Email: ${it.email}")
                         Log.d("UserService", "Client ID: ${it.client_id}")
+                        Log.d("UserService", "Cognito User Sub: ${it.cognito_user_sub}")
                         Log.d("UserService", "Documento: ${it.document_type}")
                         Log.d("UserService", "Rol: ${it.user_role}")
                         Log.d("UserService", "Número de ID: ${it.id_number}")

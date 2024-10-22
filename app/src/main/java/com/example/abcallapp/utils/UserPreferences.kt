@@ -22,6 +22,9 @@ class UserPreferences private constructor(context: Context) {
         private const val KEY_COMMUNICATION_TYPE = "communication_type"
         private const val KEY_CLIENT_ID = "client_id"
         private const val KEY_USERNAME = "username"
+        private const val KEY_ID_NUMBER = "id_number"
+        private const val KEY_CELL_PHONE = "cellphone"
+        private const val KEY_COGNITO_SUB = "cognito_user_sub"
 
         @Volatile
         private var INSTANCE: UserPreferences? = null
@@ -33,10 +36,10 @@ class UserPreferences private constructor(context: Context) {
         }
     }
 
-    // Guardar información del usuario en SharedPreferences
     fun saveUser(user: User) {
         val editor = preferences.edit()
-        editor.putString(KEY_USER_ID, user.id_number)
+
+        editor.putInt(KEY_USER_ID, user.id)
         editor.putString(KEY_USER_NAME, user.name)
         editor.putString(KEY_USER_LAST_NAME, user.last_name)
         editor.putString(KEY_USER_EMAIL, user.email)
@@ -44,16 +47,19 @@ class UserPreferences private constructor(context: Context) {
         editor.putString(KEY_DOCUMENT_TYPE, user.document_type)
         editor.putString(KEY_COMMUNICATION_TYPE, user.communication_type)
         editor.putInt(KEY_CLIENT_ID, user.client_id)
-        editor.putString(KEY_USERNAME, user.username) // Guardar username
+        editor.putString(KEY_USERNAME, user.username)
+        editor.putString(KEY_ID_NUMBER, user.id_number)
+        editor.putString(KEY_CELL_PHONE, user.cellphone) // Almacena como String
+        editor.putString(KEY_COGNITO_SUB, user.cognito_user_sub)
         editor.apply()
 
-        // Verificar si los datos se están guardando
         Log.d("UserPreferences", "Usuario guardado: ${user.name} ${user.last_name}, Email: ${user.email}")
     }
 
+
     // Leer información del usuario
     fun getUser(): User? {
-        val userId = preferences.getString(KEY_USER_ID, null)
+        val userId = preferences.getInt(KEY_USER_ID, -1)
         val userName = preferences.getString(KEY_USER_NAME, null)
         val userLastName = preferences.getString(KEY_USER_LAST_NAME, null)
         val userEmail = preferences.getString(KEY_USER_EMAIL, null)
@@ -61,27 +67,33 @@ class UserPreferences private constructor(context: Context) {
         val documentType = preferences.getString(KEY_DOCUMENT_TYPE, null)
         val communicationType = preferences.getString(KEY_COMMUNICATION_TYPE, null)
         val clientId = preferences.getInt(KEY_CLIENT_ID, -1)
-        val username = preferences.getString(KEY_USERNAME, null) // Recuperar username
+        val username = preferences.getString(KEY_USERNAME, null)
+        val idNumber = preferences.getString(KEY_ID_NUMBER, null)
+        val cellphone = preferences.getString(KEY_CELL_PHONE, "")
+        val cognitoSub = preferences.getString(KEY_COGNITO_SUB, null)
 
         Log.d("UserPreferences", "Intentando recuperar datos del usuario: $userName $userLastName $userEmail")
+        Log.d("UserPreferences", "userId: $userId, userName: $userName, userLastName: $userLastName, userEmail: $userEmail")
+        Log.d("UserPreferences", "userRole: $userRole, documentType: $documentType, communicationType: $communicationType")
+        Log.d("UserPreferences", "clientId: $clientId, username: $username, idNumber: $idNumber, cellphone: $cellphone, cognitoSub: $cognitoSub")
 
-        return if (userId != null && userName != null && userEmail != null && userRole != null && documentType != null && communicationType != null && clientId != -1 && username != null) {
+        return if (userId != -1 && userName != null && userEmail != null && userRole != null && documentType != null && communicationType != null && clientId != -1 && username != null && idNumber != null && cognitoSub != null) {
             User(
-                client_id = clientId,
-                document_type = documentType,
-                user_role = userRole,
-                id_number = userId,
+                id = userId,
                 name = userName,
                 last_name = userLastName ?: "",
                 email = userEmail,
-                cellphone = "",
+                user_role = userRole,
+                document_type = documentType,
                 communication_type = communicationType,
-                username = username,  // Asignar username al crear el usuario
-                id = -1,  // Puedes cambiarlo según sea necesario si tienes un campo ID
-                cognito_user_sub = "" // Cambia esto según sea necesario
+                client_id = clientId,
+                username = username,
+                id_number = idNumber,
+                cellphone = cellphone ?: "",  // Ya está como String
+                cognito_user_sub = cognitoSub
             )
         } else {
-            Log.e("ProfileFragment", "No se encontró usuario en SharedPreferences")
+            Log.e("UserPreferences", "No se encontró usuario en SharedPreferences")
             null
         }
     }
@@ -96,7 +108,6 @@ class UserPreferences private constructor(context: Context) {
         return preferences.getString("ID_TOKEN", null)
     }
 
-
     // Eliminar datos de usuario
     fun clearUserData() {
         val editor = preferences.edit()
@@ -104,3 +115,4 @@ class UserPreferences private constructor(context: Context) {
         editor.apply()
     }
 }
+
