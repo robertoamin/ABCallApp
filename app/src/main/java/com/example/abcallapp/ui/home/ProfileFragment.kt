@@ -10,8 +10,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.abcallapp.R
+import com.example.abcallapp.data.model.Client
+import com.example.abcallapp.data.model.ClientResponse
 import com.example.abcallapp.databinding.ActivityProfileFragmentBinding
+import com.example.abcallapp.network.ClientService
 import com.example.abcallapp.utils.UserPreferences
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,6 +27,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: ActivityProfileFragmentBinding
     private lateinit var userPreferences: UserPreferences
+    private lateinit var clientService: ClientService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +38,21 @@ class ProfileFragment : Fragment() {
         // Obtener la instancia de UserPreferences con requireContext()
         userPreferences = UserPreferences.getInstance(requireContext())
 
+        // Inicializar Retrofit para ClientService
+        clientService = Retrofit.Builder()
+            .baseUrl("https://l36oyb6gwa.execute-api.us-east-1.amazonaws.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ClientService::class.java)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Realizar la consulta GET al microservicio de cliente
+        fetchClientDetails()
 
         Log.d("ProfileFragment", "Intentando recuperar datos del usuario...")
 
@@ -56,7 +75,7 @@ class ProfileFragment : Fragment() {
             val nombreCompleto = "${it.name} ${it.last_name ?: ""}"
             binding.userName.text = if (nombreCompleto.isNotBlank()) nombreCompleto else "Nombre no disponible"
             binding.userEmail.text = it.email ?: "Email no disponible"
-            binding.companyLabel.text = it.client_id.toString()
+            //binding.companyLabel.text = it.client_id.toString()
             binding.communicationLabel.text = it.communication_type ?: "Tipo de comunicación no disponible"
         }
 
@@ -95,5 +114,36 @@ class ProfileFragment : Fragment() {
         // Actualizar UI
         binding.currentDate.text = dateFormat.format(currentDate)
         binding.currentTime.text = timeFormat.format(currentDate)
+    }
+
+    // Función para hacer la llamada GET al microservicio del cliente
+    private fun fetchClientDetails() {
+        val idToken = userPreferences.getIdToken()  // Recuperar el token almacenado
+        if (idToken.isNullOrEmpty()) {
+            Log.e("ProfileFragment", "Token de autenticación no disponible")
+            return
+        }
+
+        val authHeader = "Bearer $idToken"
+        val call = clientService.getClientDetails(authHeader)
+
+        call.enqueue(object : Callback<ClientResponse> {
+            override fun onResponse(call: Call<ClientResponse>, response: Response<ClientResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val client = response.body()!!.data
+
+                    // Mostrar el nombre legal (legal_name) en la UI
+                    binding.companyLabel.text = client.legal_name
+
+                    Log.d("ClientService", "Datos del cliente obtenidos: ${client.legal_name}")
+                } else {
+                    Log.e("ClientService", "Error en la respuesta: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ClientResponse>, t: Throwable) {
+                Log.e("ClientService", "Error en la solicitud: ${t.message}")
+            }
+        })
     }
 }

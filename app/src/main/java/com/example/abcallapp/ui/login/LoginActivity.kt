@@ -122,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
         user.getSessionInBackground(authenticationHandler)
     }
 
-    // Función para hacer la llamada GET al microservicio
+    // Función para hacer la llamada GET al microservicio de usuarios
     private fun fetchUserDetails(idToken: String) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://1acgpw2vfg.execute-api.us-east-1.amazonaws.com/")

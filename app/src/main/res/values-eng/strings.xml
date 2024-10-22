@@ -48,6 +48,8 @@
     <string name="success">Success</string>
     <string name="PQR_success">Your PQR has been created successfully</string>
     <string name="Accept">Accept</string>
+    <string name="current_time">Current Time</string>
+    <string name="current_date">Current Date</string>
     <string name="Bot_response">This is a bot response</string>
     <string name="Bot_welcome">Welcome to your ABCall assistant!</string>
     <string name="titulo_modificar">Edit Profile</string>
