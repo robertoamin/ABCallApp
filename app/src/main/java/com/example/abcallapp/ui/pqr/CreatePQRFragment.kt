@@ -21,6 +21,8 @@ import com.example.abcallapp.utils.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CreatePQRFragment : Fragment() {
 
@@ -51,6 +53,9 @@ class CreatePQRFragment : Fragment() {
         val tipoPqrOptions = resources.getStringArray(R.array.tipo_pqr_opciones)
         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, tipoPqrOptions)
         binding.tipoPqrDropdown.setAdapter(adapter)
+
+        val currentDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        binding.fechaTextView.setText(currentDate)
 
 
         // Acción del botón "Crear"
@@ -95,7 +100,7 @@ class CreatePQRFragment : Fragment() {
                         val pqrResponse = response.body()
                         if (pqrResponse != null && pqrResponse.status == "ok") {
                             Log.d("CreatePQR", "PQR creado exitosamente en el microservicio.")
-                            NotificationManager.addNotification("Nuevo PQR Creado")
+                            NotificationManager.addNotification("Nuevo PQR #234 Creado")
 
                             showSuccessDialog()
 
