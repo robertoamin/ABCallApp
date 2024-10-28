@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.abcallapp.R
+import com.example.abcallapp.data.model.CommunicationTypeUpdate
 import com.example.abcallapp.data.model.User
 import com.example.abcallapp.databinding.ActivityEditProfileFragmentBinding
 import com.example.abcallapp.network.ApiClient
@@ -17,6 +18,7 @@ import com.example.abcallapp.network.UserClient
 import com.example.abcallapp.network.UserService
 import com.example.abcallapp.ui.notifications.NotificationManager
 import com.example.abcallapp.utils.UserPreferences
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -86,11 +88,16 @@ class EditProfileFragment : Fragment() {
             return
         }
 
-        // Configurar la llamada PUT con Retrofit (ejemplo)
-        val call = userService.editUserCommunication("Bearer $idToken", userModificado)
+        // Crea un objeto con solo el campo communication_type a modificar
+        val communicationUpdate = CommunicationTypeUpdate(
+            communication_type = binding.tipoComunicacionEditText.text.toString()
+        )
 
-        call.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
+        // Configurar la llamada PUT con Retrofit para solo enviar el campo necesario
+        val call = userService.editUserCommunication("Bearer $idToken", communicationUpdate)
+
+        call.enqueue(object : Callback<ResponseBody> {  // Usamos ResponseBody para manejar respuestas sin cuerpo
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     // Guardar el usuario actualizado en las preferencias
                     userPreferences.saveUser(userModificado)
@@ -100,13 +107,16 @@ class EditProfileFragment : Fragment() {
 
                     findNavController().navigateUp() // Regresa al fragmento anterior
                 } else {
-                    Toast.makeText(requireContext(), "Error al actualizar el perfil", Toast.LENGTH_SHORT).show()
+                    val errorMessage = response.errorBody()?.string() ?: "Error desconocido"
+                    Toast.makeText(requireContext(), "Error al actualizar el perfil: $errorMessage", Toast.LENGTH_LONG).show()
                 }
+
             }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error de red: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
 }
