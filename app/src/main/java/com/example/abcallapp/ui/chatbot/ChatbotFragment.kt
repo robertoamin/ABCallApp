@@ -16,9 +16,12 @@ import com.example.abcallapp.network.ChatGPTService
 import com.example.abcallapp.network.CohereClient
 import com.example.abcallapp.network.CohereService
 import com.example.abcallapp.ui.notifications.NotificationManager
+import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -149,19 +152,29 @@ class ChatbotFragment : Fragment() {
         val service = CohereClient.retrofit.create(CohereService::class.java)
 
         val apiKey = "Bearer 4FBgLHiMJTiHygmvXQ7S8Dg967i3Ludqg4xc5tFy"
-        val messages = listOf(
-            ChatGPTMessage("system", "You are a customer service chatbot specialized in complaints, claims, and petitions."),
-            ChatGPTMessage("user", userInput)
-        )
+        //val messages = listOf(
+        //    ChatGPTMessage("system", "You are a customer service chatbot specialized in complaints, claims, and petitions."),
+        //    ChatGPTMessage("user", userInput)
+        //)
 
         //val requestBody = ChatGPTRequest(
         //    model = "gpt-3.5-turbo",
         //    messages = messages,
         //    max_tokens = 50  // Limitar el número de tokens
         //)
+
+        // Cargar preguntas frecuentes desde JSON
+        val faqs = loadFAQsFromJSON()
+        // Convierte las preguntas frecuentes a un String de contexto
+        val faqsContext = faqs.joinToString("\n") { "Pregunta: ${it.title}\nRespuesta: ${it.content}" }
+        // Combina el contexto de preguntas frecuentes con la entrada del usuario
+        val prompt = "$faqsContext\n\nUsuario: $userInput\nBot:"
         val requestBody = CohereRequest(
-            prompt = userInput
+            prompt = prompt
         )
+        //val requestBody = CohereRequest(
+        //    prompt = userInput
+        //)
         // Solo generar la notificación en la primera respuesta del bot
         if (isFirstBotResponse) {
             NotificationManager.addNotification("Conversación con Bot iniciada")
@@ -187,22 +200,54 @@ class ChatbotFragment : Fragment() {
             override fun onResponse(call: Call<CohereResponse>, response: Response<CohereResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val botReply = response.body()!!.generations.first().text
-                    val truncatedReply = botReply.split(" ").take(20).joinToString(" ") // Limita la respuesta a 10 palabras
+                    val truncatedReply = botReply.split(" ").take(30).joinToString(" ") // Limita la respuesta a 30 palabras
 
                     addMessage(truncatedReply, false)  // Muestra el mensaje del bot
                 } else {
                     addMessage("Error: No se pudo obtener la respuesta del bot.", false)
                 }
             }
-
             override fun onFailure(call: Call<CohereResponse>, t: Throwable) {
                 addMessage("Error: ${t.message}", false)  // Muestra un error si la solicitud falla
             }
         })
 
-
     }
 
+    // Función para cargar preguntas frecuentes desde un archivo JSON
+    private fun loadFAQsFromJSON(): List<FAQ> {
+        val faqs = mutableListOf<FAQ>()
+
+        try {
+            // Abre el archivo JSON desde res/raw/faqs.json
+            val inputStream: InputStream = resources.openRawResource(R.raw.faqs)
+            val jsonString = inputStream.bufferedReader().use { it.readText() }
+
+            // Convierte el contenido del archivo a un objeto JSON
+            val jsonArray = JSONArray(jsonString)
+
+            // Itera sobre cada elemento en el array y convierte a FAQ
+            for (i in 0 until jsonArray.length()) {
+                val faqObject = jsonArray.getJSONObject(i)
+                val title = faqObject.getString("title")
+                val content = faqObject.getString("content")
+                val tagsArray = faqObject.getJSONArray("tags")
+
+                // Convierte el array de tags a una lista de strings
+                val tags = mutableListOf<String>()
+                for (j in 0 until tagsArray.length()) {
+                    tags.add(tagsArray.getString(j))
+                }
+
+                // Agrega el FAQ a la lista
+                faqs.add(FAQ(title, content, tags))
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return faqs
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

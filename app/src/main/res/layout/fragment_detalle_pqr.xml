@@ -9,19 +9,22 @@
     tools:context=".ui.pqr.DetallePQRFragment">
 
     <!-- Imagen de fondo que cubre toda la pantalla -->
+
+    <!-- Fecha -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:alpha="0.3"
         android:scaleType="centerCrop"
         android:src="@drawable/fondo_appchat2"
-        android:alpha="0.5"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Fecha -->
     <TextView
         android:id="@+id/detalleFechaTextView"
         android:layout_width="wrap_content"
@@ -44,10 +47,23 @@
         android:layout_marginTop="60dp"
         android:text="Asunto"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detalleFechaTextView" />
+
     <!-- Detalle -->
+    <TextView
+        android:id="@+id/companyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="Compañia: Movistar"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subjectTextView" />
+
     <TextView
         android:id="@+id/descripcionTextView"
         android:layout_width="0dp"
@@ -57,11 +73,11 @@
         android:layout_marginEnd="16dp"
         android:text="He recibido un cobro doble en mi factura del mes de septiembre."
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subjectTextView" />
+        app:layout_constraintTop_toBottomOf="@id/companyTextView" />
     <!-- Estado -->
     <TextView
         android:id="@+id/estadoTextView"
@@ -71,7 +87,7 @@
         android:layout_marginTop="52dp"
         android:text="Estado: Abierto"
         android:textColor="@color/teal_200"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descripcionTextView" />
     <!-- Fecha estimada de cierre -->
@@ -83,7 +99,7 @@
         android:layout_marginTop="44dp"
         android:text="Fecha estimada de cierre: 20/11/2024"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/estadoTextView" />
     <!-- Botón flotante -->

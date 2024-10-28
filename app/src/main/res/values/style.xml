@@ -1,5 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Tema personalizado basado en MaterialComponents sin ActionBar -->
+    <style name="Theme.YourAppName" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Personalizaciones aquí, como colores y otros estilos -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/gray_200</item>
+        <!-- Asegúrate de tener estos atributos para ocultar ActionBar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Otros atributos del tema -->
+    </style>
+
+    <!-- Estilo para botones redondeados -->
     <style name="RoundedButton">
         <item name="android:background">@drawable/rounded_button</item> <!-- Aplicar el drawable con bordes redondeados -->
         <item name="android:textColor">@color/white</item> <!-- Color del texto -->
@@ -7,13 +20,20 @@
         <item name="cornerSize">20dp</item>
     </style>
 
-    <style name="RoundCornerShape">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+    <!-- Estilo para cajas de texto con borde -->
+    <style name="OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/white</item> <!-- Color del borde -->
+        <item name="hintTextColor">@color/white</item> <!-- Color del hint fijo -->
     </style>
 
+    <!-- Otros estilos personalizados -->
     <style name="WhiteText">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="HintTextAppearance">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="WhiteText2">
@@ -25,24 +45,14 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/white</item> <!-- Color del borde -->
-    </style>
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorOnPrimary">@color/white</item>
-    </style>
-
-    <!-- Estilo para el botón de login -->
+    <!-- Estilo para botones específicos -->
     <style name="LoginButton">
         <item name="android:background">@color/teal_200</item> <!-- Color de fondo -->
         <item name="android:textColor">@color/black</item> <!-- Color de texto -->
         <item name="cornerFamily">rounded</item> <!-- Borde redondeado -->
         <item name="cornerSize">10dp</item> <!-- Tamaño del borde -->
     </style>
+
     <!-- Estilo para el botón de Cancel -->
     <style name="CancelButton">
         <item name="android:background">@color/gray_700</item> <!-- Color de fondo -->
@@ -51,3 +61,4 @@
         <item name="cornerSize">10dp</item> <!-- Tamaño del borde -->
     </style>
 </resources>
+

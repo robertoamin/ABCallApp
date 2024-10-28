@@ -127,23 +127,31 @@ class ProfileFragment : Fragment() {
         val authHeader = "Bearer $idToken"
         val call = clientService.getClientDetails(authHeader)
 
-        call.enqueue(object : Callback<ClientResponse> {
-            override fun onResponse(call: Call<ClientResponse>, response: Response<ClientResponse>) {
+        call.enqueue(object : Callback<List<Client>> { // Cambia a una lista de Client
+            override fun onResponse(call: Call<List<Client>>, response: Response<List<Client>>) {
                 if (response.isSuccessful && response.body() != null) {
-                    val client = response.body()!!.data
+                    val clientList = response.body()!!
 
-                    // Mostrar el nombre legal (legal_name) en la UI
-                    binding.companyLabel.text = client.legal_name
+                    // Busca el client_id del usuario en la lista
+                    val user = userPreferences.getUser()
+                    val matchingClient = clientList.find { it.id == user?.client_id }
 
-                    Log.d("ClientService", "Datos del cliente obtenidos: ${client.legal_name}")
+                    if (matchingClient != null) {
+                        // Mostrar el nombre legal (legal_name) en la UI
+                        binding.companyLabel.text = matchingClient.legal_name
+                        Log.d("ClientService", "Datos del cliente obtenidos: ${matchingClient.legal_name}")
+                    } else {
+                        Log.e("ClientService", "No se encontró un cliente que coincida con el client_id del usuario.")
+                    }
                 } else {
                     Log.e("ClientService", "Error en la respuesta: ${response.code()}")
                 }
             }
 
-            override fun onFailure(call: Call<ClientResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<Client>>, t: Throwable) {
                 Log.e("ClientService", "Error en la solicitud: ${t.message}")
             }
         })
     }
+
 }

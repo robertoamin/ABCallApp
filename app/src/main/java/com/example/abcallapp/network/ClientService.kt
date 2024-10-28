@@ -9,6 +9,6 @@ import retrofit2.http.Header
 
 
 interface ClientService {
-    @GET("api/client/my")
-    fun getClientDetails(@Header("Authorization") authHeader: String): Call<ClientResponse>
+    @GET("api/clients/short")
+    fun getClientDetails(@Header("Authorization") authHeader: String): Call<List<Client>>
 }
