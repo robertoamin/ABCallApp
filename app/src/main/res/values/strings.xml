@@ -32,7 +32,8 @@
     <string name="Estado">Open</string>
     <string name="Conversacion">Conversation Started</string>
     <string name="Inicio_chat">How can we help you today?</string>
-    <string name="Titulo_pqr">Enter the title</string>
+    <string name="Titulo_pqr">Title</string>
+    <string name="Hint_Titulo_pqr">Enter the Title</string>
     <string name="Tipo_pqr">What type of PQR is it?</string>
     <string name="Descripcion">description</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -50,6 +51,7 @@
     <string name="Accept">Accept</string>
     <string name="current_time">Current Time</string>
     <string name="current_date">Current Date</string>
+    <string name="Fecha">21/10/2024</string>
     <string name="Bot_response">This is a bot response</string>
     <string name="Bot_welcome">Welcome to your ABCall assistant!</string>
     <string name="titulo_modificar">Edit Profile</string>

@@ -1,0 +1,125 @@
+{
+  "faqs": [
+    {
+      "title": "¿Qué debo hacer si mi servicio de internet está lento o no funciona?",
+      "content": "Verifique primero si hay interrupciones del servicio en su área accediendo a nuestra página de estado del servicio o llamando a nuestro soporte técnico. Puede intentar reiniciar su router o módem desconectándolo por 10 segundos y luego volviéndolo a conectar. Si persiste el problema, contacte a nuestro equipo técnico para realizar un diagnóstico.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Por qué mi señal de telefonía móvil es débil en algunas áreas?",
+      "content": "La señal de telefonía móvil puede verse afectada por varios factores, como la distancia a la torre de señal más cercana, la ubicación geográfica, la presencia de obstáculos como edificios o montañas, o condiciones meteorológicas. Le recomendamos verificar la cobertura en su área mediante nuestra aplicación móvil o página web. También puede comunicarse con nosotros para verificar si hay mejoras planificadas en su área.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Cómo puedo cambiar mi plan de internet o telefonía móvil?",
+      "content": "Puede cambiar su plan en cualquier momento visitando nuestra tienda en línea, accediendo a nuestra aplicación móvil o contactando a nuestro servicio de atención al cliente. Recuerde que algunos cambios pueden tener cargos adicionales o requisitos mínimos de permanencia.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Qué debo hacer si no puedo realizar ni recibir llamadas?",
+      "content": "Primero, asegúrese de que su teléfono esté en una zona de cobertura y que tenga suficiente señal. También puede intentar reiniciar su dispositivo móvil. Si el problema persiste, verifique que no haya un bloqueo o restricción en su línea debido a facturación o configuraciones. Contáctenos para recibir asistencia adicional.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Cómo configuro el Wi-Fi en mi router?",
+      "content": "Para configurar el Wi-Fi, conecte su router a una fuente de alimentación y siga las instrucciones del manual que viene con el dispositivo. Normalmente, puede acceder a la configuración ingresando la dirección IP proporcionada en el manual en su navegador web y siguiendo las instrucciones. Si tiene dificultades, nuestro soporte técnico está disponible para guiarlo paso a paso.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "Mi internet está lento, ¿qué puedo hacer?",
+      "content": "Si su internet está lento, intente reiniciar su router o módem. Verifique si hay dispositivos conectados que estén consumiendo un gran ancho de banda, como descargas o transmisiones en vivo. También asegúrese de que su plan de internet se ajuste a sus necesidades. Si sigue teniendo problemas, contáctenos para realizar un diagnóstico técnico.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Qué hago si mi conexión no funciona luego de la migración de red?",
+      "content": "En algunos casos, las migraciones de red pueden requerir ajustes en su equipo o reiniciar el router. Intente desconectar y volver a conectar su router. Si el problema persiste, llame a nuestro soporte técnico, ya que puede requerirse una reconfiguración o actualización en su servicio.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Cómo afecta el tipo de celular a la navegación WiFi?",
+      "content": "El rendimiento de la navegación WiFi puede variar según el tipo y modelo de su teléfono. Los dispositivos más recientes suelen tener compatibilidad con redes WiFi de mayor velocidad (WiFi 5 o WiFi 6). Además, la ubicación del teléfono en relación con el router puede afectar la calidad de la señal. Mantenga su dispositivo actualizado y asegúrese de que esté dentro del rango del router para un mejor rendimiento.",
+      "tags": ["servicio"]
+    },
+    {
+      "title": "¿Dónde puedo ver y pagar mi factura?",
+      "content": "Puede ver y pagar su factura accediendo a nuestra página web, a través de la aplicación móvil o en cualquier tienda física autorizada. También ofrecemos la opción de pago automático a través de tarjetas de crédito o débito.",
+      "tags": ["facturacion"]
+    },
+    {
+      "title": "¿Por qué mi factura tiene un cobro adicional este mes?",
+      "content": "Los cobros adicionales pueden deberse a llamadas internacionales, consumo de datos extra, cargos por equipos adicionales, cargos por pagos atrasados o cambio de plan. Puede revisar el detalle completo de su factura en nuestra aplicación móvil o sitio web, o contactarnos para obtener una explicación detallada.",
+      "tags": ["facturacion"]
+    },
+    {
+      "title": "¿Cómo puedo cambiar la fecha de vencimiento de mi factura?",
+      "content": "Para cambiar la fecha de vencimiento, debe comunicarse con nuestro centro de atención al cliente. El cambio de fecha está sujeto a disponibilidad y puede implicar un ajuste en el ciclo de facturación.",
+      "tags": ["facturacion"]
+    },
+    {
+      "title": "¿Cómo puedo recibir mi factura por correo electrónico?",
+      "content": "Puede activar la opción de recibir su factura por correo electrónico a través de nuestra página web o aplicación móvil en la sección 'Facturación'. También puede solicitar la activación comunicándose con nuestro centro de servicio al cliente.",
+      "tags": ["facturacion"]
+    },
+    {
+      "title": "¿Qué debo hacer si mi pago no ha sido registrado?",
+      "content": "Si realizó un pago y no aparece reflejado, verifique que haya sido realizado correctamente y guarde el comprobante. Puede reportar el pago no registrado comunicándose con nosotros, proporcionando los detalles del pago para su verificación.",
+      "tags": ["facturacion"]
+    },
+    {
+      "title": "¿Cómo puedo comprar un teléfono nuevo?",
+      "content": "Puede comprar un teléfono nuevo a través de nuestra tienda en línea, visitando una de nuestras tiendas físicas, o contactando a nuestro centro de atención al cliente. Ofrecemos opciones de financiamiento y descuentos por permanencia, consulte por las opciones disponibles al momento de la compra.",
+      "tags": ["proceso de compra"]
+    },
+    {
+      "title": "¿Puedo financiar la compra de un teléfono?",
+      "content": "Sí, ofrecemos opciones de financiamiento para la compra de teléfonos móviles. Las opciones varían según el modelo del dispositivo, el plan de telefonía asociado y su historial crediticio. Para más detalles, visite nuestra tienda en línea o hable con uno de nuestros agentes.",
+      "tags": ["proceso de compra"]
+    },
+    {
+      "title": "¿Cómo puedo adquirir un servicio nuevo de internet o telefonía?",
+      "content": "Puede adquirir un nuevo servicio visitando nuestra página web, tienda en línea, o comunicándose con nuestro equipo de ventas. También puede visitar nuestras tiendas físicas, donde un agente lo ayudará a elegir el plan que mejor se ajuste a sus necesidades.",
+      "tags": ["proceso de compra"]
+    },
+    {
+      "title": "¿Qué promociones están disponibles al adquirir un nuevo servicio?",
+      "content": "Las promociones varían según la temporada y el tipo de servicio. Para conocer las promociones actuales, visite nuestra página web en la sección de promociones o comuníquese con nosotros. Recuerde que algunas promociones están sujetas a términos y condiciones.",
+      "tags": ["proceso de compra"]
+    },
+    {
+      "title": "¿Cómo puedo cancelar la compra de un teléfono o servicio?",
+      "content": "Si desea cancelar la compra de un teléfono o servicio, debe comunicarse con nuestro servicio de atención al cliente lo antes posible. Recuerde que puede haber políticas de devolución o cancelación que apliquen, y algunos cargos pueden no ser reembolsables.",
+      "tags": ["proceso de compra"]
+    },
+    {
+      "title": "¿Cómo prevenir fraudes y ataques informáticos?",
+      "content": "Para prevenir fraudes y ataques informáticos, nunca comparta su información personal, contraseñas o códigos PIN con terceros. Desconfíe de correos electrónicos, mensajes de texto o llamadas solicitando su información personal. Utilice contraseñas seguras y cambie sus credenciales periódicamente. Si sospecha de actividad fraudulenta, comuníquese con nosotros inmediatamente.",
+      "tags": ["seguridad"]
+    },
+    {
+      "title": "¿Qué debo hacer en caso de suplantación de identidad en servicios de telecomunicaciones?",
+      "content": "En caso de suplantación de identidad, comuníquese con nuestro centro de atención al cliente inmediatamente para bloquear los servicios afectados. También le recomendamos que presente una denuncia ante las autoridades competentes. Revisaremos la situación y tomaremos las medidas necesarias para proteger su cuenta y datos personales.",
+      "tags": ["seguridad"]
+    },
+    {
+      "title": "¿Cómo protegemos sus datos personales?",
+      "content": "Cumplimos con todas las normativas locales y nacionales de protección de datos. Sus datos personales se manejan con estrictos estándares de seguridad, y solo se utilizan para los fines para los cuales fueron recopilados. Si desea conocer más sobre nuestras políticas de privacidad, visite nuestra página web.",
+      "tags": ["seguridad"]
+    },
+    {
+      "title": "Preguntas frecuentes sobre la instalación de servicios",
+      "content": "La instalación de servicios generalmente se programa dentro de los 5 días hábiles posteriores a la contratación del servicio. Uno de nuestros técnicos se pondrá en contacto con usted para confirmar la cita. Asegúrese de estar presente durante la instalación para facilitar el acceso y responder cualquier consulta del técnico.",
+      "tags": ["instalacion"]
+    },
+    {
+      "title": "¿Qué hacer si tus servicios presentan fallas?",
+      "content": "Si experimenta fallas en sus servicios, primero reinicie su equipo (módem, router o teléfono). Si el problema persiste, verifique si hay interrupciones de servicio en su área a través de nuestra aplicación móvil o página web. Si no hay reportes, comuníquese con nuestro servicio de soporte técnico para recibir asistencia.",
+      "tags": ["instalacion"]
+    },
+    {
+      "title": "Lo que debes saber sobre el retiro de tus servicios",
+      "content": "Para solicitar el retiro de un servicio, comuníquese con nuestro centro de atención al cliente. Algunos servicios pueden requerir un preaviso o tener cláusulas de permanencia. Le explicaremos los términos aplicables y el proceso para finalizar el contrato de manera adecuada.",
+      "tags": ["retiro"]
+    }
+  ]
+
+}

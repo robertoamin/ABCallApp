@@ -11,15 +11,20 @@
     <!-- Campo Titulo PQR-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tituloInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/Titulo_pqr"
+        app:hintEnabled="true"
+        app:hintAnimationEnabled="false"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:boxBackgroundMode="outline"
+        app:hintTextAppearance="@style/HintTextAppearance"
+        app:boxStrokeColor="@color/white"
+        app:boxStrokeWidth="2dp"
         app:endIconDrawable="@drawable/cancel_24px"
         app:endIconMode="custom"
         app:endIconTint="@color/white"
@@ -33,18 +38,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext_background"
+            android:hint="@string/Hint_Titulo_pqr"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <!-- Campo de Fecha no editable -->
+    <TextView
+        android:id="@+id/fechaTextView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:hint="@string/Fecha"
+        android:background="@drawable/rounded_edittext_background"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloInputLayout" />
     <!-- Dropdown Tipo de PQR -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tipoPqrInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/Tipo_pqr"
         android:textColor="@color/white"
@@ -56,7 +81,8 @@
         app:hintTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/fechaTextView"
+       >
 
         <AutoCompleteTextView
             android:id="@+id/tipoPqrDropdown"
@@ -74,13 +100,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/Descripcion"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeWidth="2dp"
+
         app:endIconDrawable="@drawable/cancel_24px"
         app:endIconMode="custom"
         app:endIconTint="@color/white"
@@ -100,18 +125,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botón Cancelar -->
+
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginStart="132dp"
+        android:layout_marginStart="176dp"
         android:layout_marginBottom="32dp"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/gray_700"
         android:background="@drawable/rounded_button"
         android:text="@string/Cancelar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/gray_700"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Botón Crear -->
     <Button
