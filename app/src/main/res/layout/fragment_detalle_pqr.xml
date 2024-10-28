@@ -97,6 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
+        android:drawableStart="@drawable/alarm_24px"
+        android:drawablePadding="8dp"
         android:text="Fecha estimada de cierre: 20/11/2024"
         android:textColor="@color/white"
         android:textSize="18sp"
