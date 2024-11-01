@@ -75,7 +75,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username"
             android:layout_width="345dp"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_marginStart="32dp"
             android:textColorHint="@color/white"
             app:boxBackgroundColor="@color/gray_500"

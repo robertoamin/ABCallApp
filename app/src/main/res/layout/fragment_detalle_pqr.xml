@@ -8,6 +8,17 @@
     android:background="@color/gray_500"
     tools:context=".ui.pqr.DetallePQRFragment">
 
+    <!-- Franja de fondo -->
+    <View
+        android:id="@+id/headerBackground"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/gray_900"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <!-- Imagen de fondo que cubre toda la pantalla -->
 
     <!-- Fecha -->
