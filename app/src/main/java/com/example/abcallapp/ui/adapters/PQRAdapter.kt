@@ -34,24 +34,30 @@ class PQRAdapter(
 
     class PQRViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val pqrTextView: TextView = itemView.findViewById(R.id.pqrTextView)
-        private val statusTextView: TextView = itemView.findViewById(R.id.pqrStatusTextView)
+        private val stateBubble: TextView = itemView.findViewById(R.id.stateBubble)  // Burbuja de estado
 
         fun bind(pqrItem: PQRItem) {
-            pqrTextView.text = "${pqrItem.date} - ${pqrItem.subject}"
+            // Truncar el subject si es mayor a 20 caracteres
+            val truncatedSubject = if (pqrItem.subject.length > 20) {
+                pqrItem.subject.substring(0, 20) + "..."
+            } else {
+                pqrItem.subject
+            }
+
+            // Mostrar la fecha y el subject truncado
+            pqrTextView.text = "${pqrItem.date} - $truncatedSubject"
 
             // Cambia el color dependiendo del estado
             when (pqrItem.status.lowercase()) { // Convertimos el texto a minúsculas para hacer la comparación insensible a mayúsculas/minúsculas
                 "open", "abierto" -> {  // Verificamos si el estado es "open" o "abierto"
-                    statusTextView.text = pqrItem.status
-                    statusTextView.setTextColor(
-                        ContextCompat.getColor(itemView.context, androidx.appcompat.R.color.material_deep_teal_500)
-                    )
+                    stateBubble.text = "A"
+                    stateBubble.setBackgroundResource(R.drawable.green_bubble_background)
+                    stateBubble.setTextColor(ContextCompat.getColor(itemView.context, android.R.color.black))  // Texto negro para "A"
                 }
                 else -> {
-                    statusTextView.text = pqrItem.status
-                    statusTextView.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.red)
-                    )
+                    stateBubble.text = "C"
+                    stateBubble.setBackgroundResource(R.drawable.dark_gray_bubble_background)
+                    stateBubble.setTextColor(ContextCompat.getColor(itemView.context, android.R.color.white))
                 }
             }
 

@@ -19,8 +19,8 @@
     <string name="login">Login</string>
     <string name="Inicio">Home ABCall</string>
     <string name="nombre_usuario">Name</string>
-    <string name="nombre_empresa">Company</string>
-    <string name="tipo_comunicacion">Type of Communication</string>
+    <string name="nombre_empresa">Company:</string>
+    <string name="tipo_comunicacion">Communication: </string>
     <string name="ingrese_comunicacion">Seleccione Comunicación</string>
     <string name="Editar">Edit</string>
     <string name="Enviar">Send</string>
@@ -35,7 +35,7 @@
     <string name="Titulo_pqr">Title</string>
     <string name="Hint_Titulo_pqr">Enter the Title</string>
     <string name="Tipo_pqr">What type of PQR is it?</string>
-    <string name="Descripcion">description</string>
+    <string name="Descripcion">Description</string>
     <string name="title_activity_home">HomeActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

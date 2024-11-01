@@ -25,51 +25,66 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!-- Subject -->
     <TextView
         android:id="@+id/detalleFechaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Sept 17, 2024"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Subject -->
+    <TextView
+        android:id="@+id/AsuntoFechaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="184dp"
+        android:text="Sept 17, 2024"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/subjectTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="28dp"
         android:text="Asunto"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detalleFechaTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/companyTextView" />
 
-    <!-- Detalle -->
     <TextView
         android:id="@+id/companyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:text="Compañia: Movistar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
+        android:text="Empresa: Movistar"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subjectTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/detalleFechaTextView" />
 
+    <!-- Detalle -->
     <TextView
         android:id="@+id/descripcionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="He recibido un cobro doble en mi factura del mes de septiembre."
         android:textColor="@color/white"
@@ -77,19 +92,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/companyTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/subjectTextView" />
+
     <!-- Estado -->
     <TextView
         android:id="@+id/estadoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="36dp"
         android:text="Estado: Abierto"
         android:textColor="@color/teal_200"
-        android:textSize="18sp"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descripcionTextView" />
+
     <!-- Fecha estimada de cierre -->
     <TextView
         android:id="@+id/fechaCierreTextView"
@@ -104,18 +121,19 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/estadoTextView" />
+
     <!-- Botón flotante -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/create_pqr_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="60dp"
-        android:contentDescription="@string/fab_content_desc"
+        android:layout_marginBottom="30dp"
         android:src="@drawable/add_24px"
-        android:tint="@color/black"
+        android:scaleType="centerInside"
+        android:elevation="8dp"
         app:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
