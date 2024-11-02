@@ -19,8 +19,8 @@
     <string name="login">Ingresar</string>
     <string name="Inicio">Inicio</string>
     <string name="nombre_usuario">Nombre</string>
-    <string name="nombre_empresa">Empresa</string>
-    <string name="tipo_comunicacion">Tipo de Comunicación</string>
+    <string name="nombre_empresa">Empresa:</string>
+    <string name="tipo_comunicacion">Comunicación: </string>
     <string name="ingrese_comunicacion">Seleccione Comunicación</string>
     <string name="Editar">Editar</string>
     <string name="Enviar">Enviar</string>

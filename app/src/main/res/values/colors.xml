@@ -12,6 +12,7 @@
     <color name="gray_500">#48464C</color>
     <color name="gray_200">#CCC2DC</color>
     <color name="gray_700">#79747E</color>
+    <color name="gray_900">#59575A</color>
     <color name="gray_400">#94FFFFFF</color>
     <color name="red">#94E60808</color>
     <color name="colorPrimary">#D500E676</color>

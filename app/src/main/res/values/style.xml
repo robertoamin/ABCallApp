@@ -1,8 +1,8 @@
 <resources>
     <!-- Tema personalizado basado en MaterialComponents sin ActionBar -->
-    <style name="Theme.YourAppName" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.YourAppName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Personalizaciones aquí, como colores y otros estilos -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/gray_200</item>
@@ -20,10 +20,46 @@
         <item name="cornerSize">20dp</item>
     </style>
 
-    <!-- Estilo para cajas de texto con borde -->
+    <!-- Estilo para cajas de texto con borde personalizado -->
     <style name="OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/white</item> <!-- Color del borde -->
-        <item name="hintTextColor">@color/white</item> <!-- Color del hint fijo -->
+        <item name="boxStrokeColor">@color/box_stroke_color</item>
+        <item name="boxStrokeWidth">2dp</item> <!-- Grosor del borde -->
+        <item name="hintTextColor">@color/white</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item> <!-- Estilo del hint flotante -->
+        <item name="boxBackgroundColor">@color/gray_500</item> <!-- Fondo de la caja de texto -->
+    </style>
+    <style name="OutlinedBox_Edit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/box_stroke_color_2</item>
+        <item name="boxStrokeWidth">2dp</item> <!-- Grosor del borde -->
+        <item name="hintTextColor">@color/gray_500</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance_Edit</item> <!-- Estilo del hint flotante -->
+        <item name="boxBackgroundColor">@color/white</item> <!-- Fondo de la caja de texto -->
+    </style>
+    <!-- Estilo para dropbox con borde personalizado -->
+    <style name="Dropbox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/box_stroke_color</item>
+        <item name="boxStrokeWidth">2dp</item> <!-- Grosor del borde -->
+        <item name="hintTextColor">@color/white</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item> <!-- Estilo del hint flotante -->
+        <item name="boxBackgroundColor">@color/gray_500</item> <!-- Fondo de la caja de texto -->
+    </style>
+    <!-- Estilo para el hint flotante -->
+    <style name="HintTextAppearance" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item> <!-- Tamaño del hint flotante -->
+    </style>
+    <!-- Estilo para dropbox con borde personalizado -->
+    <style name="Dropbox_Edit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/box_stroke_color_2</item>
+        <item name="boxStrokeWidth">2dp</item> <!-- Grosor del borde -->
+        <item name="hintTextColor">@color/gray_500</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance_Edit</item> <!-- Estilo del hint flotante -->
+        <item name="boxBackgroundColor">@color/white</item> <!-- Fondo de la caja de texto -->
+    </style>
+    <!-- Estilo para el hint flotante -->
+    <style name="HintTextAppearance_Edit" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/gray_500</item>
+        <item name="android:textSize">15sp</item> <!-- Tamaño del hint flotante -->
     </style>
 
     <!-- Otros estilos personalizados -->
@@ -31,10 +67,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="HintTextAppearance">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">15sp</item>
-    </style>
+
 
     <style name="WhiteText2">
         <item name="android:textColor">@color/white</item>
@@ -54,7 +87,7 @@
     </style>
 
     <!-- Estilo para el botón de Cancel -->
-    <style name="CancelButton">
+    <style name="cancelButton">
         <item name="android:background">@color/gray_700</item> <!-- Color de fondo -->
         <item name="android:textColor">@color/white</item> <!-- Color de texto -->
         <item name="cornerFamily">rounded</item> <!-- Borde redondeado -->

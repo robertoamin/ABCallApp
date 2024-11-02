@@ -71,9 +71,18 @@ class HomeFragment : Fragment() {
             override fun onResponse(call: Call<List<PQRItem>>, response: Response<List<PQRItem>>) {
                 if (response.isSuccessful && response.body() != null) {
                     val pqrList = response.body()!!
-
+                    if (pqrList.isEmpty()) {
+                        // Si la lista está vacía, muestra el mensaje de vacío
+                        binding.emptyMessageTextView.visibility = View.VISIBLE
+                        binding.pqrRecyclerView.visibility = View.GONE
+                    } else {
+                        // Si hay datos, muestra el RecyclerView y oculta el mensaje de vacío
+                        binding.emptyMessageTextView.visibility = View.GONE
+                        setupRecyclerView(pqrList)        // Configurar RecyclerView con los datos obtenidos del microservicio
+                        binding.pqrRecyclerView.visibility = View.VISIBLE
+                    }
                     // Configurar RecyclerView con los datos obtenidos del microservicio
-                    setupRecyclerView(pqrList)
+
                 } else {
                     // En caso de error, mostrar un mensaje de error al usuario
                     Toast.makeText(requireContext(), getString(R.string.PQR_get_error), Toast.LENGTH_SHORT).show()
