@@ -104,8 +104,8 @@ class ProfileFragment : Fragment() {
         val currentDate = Calendar.getInstance(timeZone).time
 
         // Formatos de fecha y hora
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+        val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
 
         // Aplicar zona horaria
         dateFormat.timeZone = timeZone

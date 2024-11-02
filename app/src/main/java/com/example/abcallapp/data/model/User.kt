@@ -10,15 +10,12 @@ data class User(
     val document_type: String,
     val client_id: Int,
     val id_number: String,//string
-    val name: String,
-    val last_name: String,
+    var name: String,
+    var last_name: String,
     var communication_type: String,
     val cellphone: String?
 )
 
-data class CommunicationTypeUpdate(
-    val communication_type: String
-)
 
 
 

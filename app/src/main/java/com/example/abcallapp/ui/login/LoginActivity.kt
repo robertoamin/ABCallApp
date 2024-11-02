@@ -169,24 +169,6 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    // Función para decodificar el JWT y obtener los claims
-    private fun getClaimsFromJWT(jwt: String): Map<String, Any> {
-        try {
-            // El JWT tiene tres partes separadas por puntos (header, payload, signature)
-            val parts = jwt.split(".")
-            if (parts.size == 3) {
-                val payload = parts[1]
-                // Decodificar la parte de los claims (payload)
-                val decodedPayload = String(Base64.decode(payload, Base64.URL_SAFE))
-                // Convertir el payload en un Map
-                val gson = Gson()
-                val mapType = object : TypeToken<Map<String, Any>>() {}.type
-                return gson.fromJson(decodedPayload, mapType)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return emptyMap()
-    }
+
 }
 

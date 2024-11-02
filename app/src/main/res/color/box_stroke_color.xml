@@ -1,0 +1,6 @@
+<!-- res/color/box_stroke_color.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@android:color/darker_gray" android:state_focused="true" />
+    <item android:color="@android:color/darker_gray" android:state_hovered="true" />
+    <item android:color="@android:color/darker_gray" />
+</selector>

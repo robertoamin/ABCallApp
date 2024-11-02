@@ -33,8 +33,8 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
             // Configura el texto del usuario
             holder.messageTextView.apply {
                 text = chatMessage.text
-                setTextColor(ContextCompat.getColor(context, android.R.color.white))
-                setBackgroundResource(R.drawable.message_background_user)
+                setTextColor(ContextCompat.getColor(context, R.color.teal_200))
+                //setBackgroundResource(R.drawable.message_background_user)
             }
             holder.messageIcon.visibility = View.VISIBLE // Mostrar ícono del usuario
             (holder.itemView as LinearLayout).gravity = Gravity.END // Alinea a la derecha
@@ -43,7 +43,7 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
             // Configura el texto del bot
             holder.messageTextView.apply {
                 text = chatMessage.text
-                setTextColor(ContextCompat.getColor(context, R.color.teal_200))
+                setTextColor(ContextCompat.getColor(context, R.color.white))
                 setBackgroundResource(R.drawable.message_background_bot)
             }
             holder.messageIcon.visibility = View.GONE // Ocultar ícono para el bot

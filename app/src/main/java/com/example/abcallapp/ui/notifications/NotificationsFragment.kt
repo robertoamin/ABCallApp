@@ -34,7 +34,7 @@ class NotificationsFragment : Fragment() {
 
         // Obtener el mes y el año actual en formato deseado
         val currentDate = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("MMMM yyyy", Locale("es", "ES"))  // Formato en español para mes y año
+        val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
         var currentMonthYear = dateFormat.format(currentDate)
 
         // Asegurarse que el mes comienza con mayúscula y el resto está en minúscula

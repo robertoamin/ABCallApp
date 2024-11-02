@@ -9,11 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.abcallapp.R
-import com.example.abcallapp.data.model.CommunicationTypeUpdate
 import com.example.abcallapp.data.model.User
 import com.example.abcallapp.databinding.ActivityEditProfileFragmentBinding
-import com.example.abcallapp.network.ApiClient
-import com.example.abcallapp.network.ProfileService
 import com.example.abcallapp.network.UserClient
 import com.example.abcallapp.network.UserService
 import com.example.abcallapp.ui.notifications.NotificationManager
@@ -24,7 +21,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EditProfileFragment : Fragment() {
-
 
     private lateinit var binding: ActivityEditProfileFragmentBinding
     private lateinit var userPreferences: UserPreferences
@@ -54,7 +50,8 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Establecer el nombre y el email en la UI
-        binding.userName.text = user.name ?: "Nombre no disponible"
+        val nombreCompleto = "${user.name} ${user.last_name ?: ""}"
+        binding.userName.text = if (nombreCompleto.isNotBlank()) nombreCompleto else "Nombre no disponible"
         binding.userEmail.text = user.email ?: "Email no disponible"
 
         binding.tipoComunicacionEditText.setText(user.communication_type)
@@ -67,10 +64,20 @@ class EditProfileFragment : Fragment() {
         // Guardar cambios cuando el usuario presione "Guardar"
         binding.savePerfilButton.setOnClickListener {
             tipoComunicacion = binding.tipoComunicacionEditText.text.toString()
-            if (tipoComunicacion.isNotEmpty()) {
-                // Actualiza solo el campo communication_type
+            val fullNameInput = binding.userNameEditText.text.toString().trim()
+
+            if (fullNameInput.isNotEmpty()) {
+                val nameParts = fullNameInput.split(" ")
+                val firstName = nameParts.firstOrNull() ?: ""
+                val lastName = nameParts.drop(1).joinToString(" ")
+
+                user.name = firstName
+                user.last_name = lastName
                 user.communication_type = tipoComunicacion
+
                 saveUserChanges(user)
+            } else {
+                Toast.makeText(requireContext(), "Por favor ingrese el nombre completo", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -88,29 +95,23 @@ class EditProfileFragment : Fragment() {
             return
         }
 
-        // Crea un objeto con solo el campo communication_type a modificar
-        val communicationUpdate = CommunicationTypeUpdate(
-            communication_type = binding.tipoComunicacionEditText.text.toString()
-        )
+        // Configurar la llamada PUT con Retrofit
+        val call = userService.editUser("Bearer $idToken", userModificado)
 
-        // Configurar la llamada PUT con Retrofit para solo enviar el campo necesario
-        val call = userService.editUserCommunication("Bearer $idToken", communicationUpdate)
-
-        call.enqueue(object : Callback<ResponseBody> {  // Usamos ResponseBody para manejar respuestas sin cuerpo
+        call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     // Guardar el usuario actualizado en las preferencias
                     userPreferences.saveUser(userModificado)
 
                     Toast.makeText(requireContext(), "Perfil actualizado", Toast.LENGTH_SHORT).show()
-                    NotificationManager.addNotification("Medio de comunicación modificado")
+                    NotificationManager.addNotification("Perfil actualizado")
 
                     findNavController().navigateUp() // Regresa al fragmento anterior
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: "Error desconocido"
                     Toast.makeText(requireContext(), "Error al actualizar el perfil: $errorMessage", Toast.LENGTH_LONG).show()
                 }
-
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -118,5 +119,4 @@ class EditProfileFragment : Fragment() {
             }
         })
     }
-
 }
