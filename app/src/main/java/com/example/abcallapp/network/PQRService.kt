@@ -14,7 +14,7 @@ interface PQRService {
         @Body pqr: PQR
     ): Call<PQRResponse>
 
-    @GET("pqrs")
+    @GET("pqrs/assigned")
     fun getPQRs(
         @Header("Authorization") authHeader: String
     ): Call<List<PQRItem>>
