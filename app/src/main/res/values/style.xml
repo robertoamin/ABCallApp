@@ -1,7 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema personalizado basado en MaterialComponents sin ActionBar -->
     <style name="Theme.YourAppName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Personalizaciones aquí, como colores y otros estilos -->
+
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -10,6 +11,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!-- Otros atributos del tema -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <!-- Estilo para botones redondeados -->
