@@ -16,6 +16,8 @@
     <color name="gray_400">#94FFFFFF</color>
     <color name="red">#94E60808</color>
     <color name="colorPrimary">#D500E676</color>
+    <color name="colorControlNormal">@color/white</color>
+
 
 
 </resources>

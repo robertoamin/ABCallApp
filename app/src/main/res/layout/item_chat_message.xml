@@ -14,7 +14,7 @@
         android:layout_height="24dp"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/chat_24px"
+        android:src="@drawable/smart_toy_24dp"
         app:tint="@color/teal_200"
         android:visibility="gone"/>
 

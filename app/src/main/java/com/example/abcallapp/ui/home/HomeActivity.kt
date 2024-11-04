@@ -24,19 +24,34 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.topAppBar)  // Configura el Toolbar como la ActionBar
 
-        val navView: BottomNavigationView = binding.navView
+        //val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
 
         // Configurar las rutas de navegación
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home, R.id.navigation_chatbot, R.id.navigation_notifications)
+            setOf(R.id.navigation_home)
         )
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_home -> {
+                    // Oculta la flecha de regreso en el fragmento Home
+                    binding.topAppBar.navigationIcon = null
+                }
+                else -> {
+                    // Muestra la flecha de regreso en otros fragmentos
+                    binding.topAppBar.setNavigationIcon(R.drawable.arrow_back_24px)
+                    binding.topAppBar.setNavigationOnClickListener {
+                        onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            }
+        }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
 
         // Manejo de la navegación inferior
-        navView.setOnItemSelectedListener { item: MenuItem ->
+        binding.navView.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.navigation_home -> {
                     navController.navigate(R.id.navigation_home) // Navegar a HomeFragment
@@ -53,7 +68,7 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Esto mostrará la flecha
+        // supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Esto mostrará la flecha
 
         // Acción para navegar al fragmento de perfil desde el TopBar
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
