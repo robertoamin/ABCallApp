@@ -7,5 +7,5 @@
         android:icon="@drawable/perfil_icon"
         android:title="Perfil"
         app:showAsAction="always"
-        app:iconTint="@color/white" />
+        app:iconTint="@color/gray_200" />
 </menu>

@@ -23,8 +23,8 @@
             android:background="@color/black"
             app:menu="@menu/custom_menu"
             app:navigationIcon="@drawable/arrow_back_24px"
-            app:navigationIconTint="@color/white"
-            app:titleTextColor="@color/white"
+            app:navigationIconTint="@color/gray_200"
+            app:titleTextColor="@color/gray_200"
             app:titleCentered="true"/>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,9 +48,9 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         app:backgroundTint="@color/black"
-        app:itemIconTint="@color/teal_200"
+        app:itemIconTint="@color/gray_200"
         app:itemRippleColor="@color/white"
-        app:itemTextColor="@color/teal_200"
+        app:itemTextColor="@color/gray_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

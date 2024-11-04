@@ -131,7 +131,7 @@ class CreatePQRFragment : Fragment() {
 
     // Método para mostrar el diálogo de éxito
     private fun showSuccessDialog() {
-        AlertDialog.Builder(requireContext())
+        AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
             .setTitle(getString(R.string.success))
             .setMessage(getString(R.string.PQR_success))
             .setPositiveButton(getString(R.string.Accept)) { dialog, _ ->
@@ -139,6 +139,7 @@ class CreatePQRFragment : Fragment() {
                 requireActivity().onBackPressed() // Regresa a la pantalla anterior después de confirmar
             }
             .show()
+
     }
 
     override fun onDestroyView() {
