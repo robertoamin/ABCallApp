@@ -46,6 +46,9 @@
     <string name="incomplete_data">incomplete data</string>
     <string name="PQR_error">Error creating PQR</string>
     <string name="PQR_get_error">Error obtaining PQR</string>
+    <string name="No_PQRs">You currently have no open PQRs</string>
+    <string name="Crear_PQR">Create PQR</string>
+    <string name="Detalle_PQR">PQR Details</string>
     <string name="success">Success</string>
     <string name="PQR_success">Your PQR has been created successfully</string>
     <string name="Accept">Accept</string>
@@ -55,4 +58,6 @@
     <string name="Bot_response">This is a bot response</string>
     <string name="Bot_welcome">Welcome to your ABCall assistant!</string>
     <string name="titulo_modificar">Edit Profile</string>
+    <string name="Perfil">Profile</string>
+    <string name="Modificar_Perfil">Edit Profile</string>
 </resources>

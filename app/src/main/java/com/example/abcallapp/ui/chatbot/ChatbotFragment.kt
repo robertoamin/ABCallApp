@@ -1,21 +1,27 @@
 package com.example.abcallapp.ui.chatbot
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.abcallapp.R
 import com.example.abcallapp.adapters.ChatbotAdapter
 import com.example.abcallapp.data.model.*
 import com.example.abcallapp.databinding.FragmentChatbotBinding
-import com.example.abcallapp.network.ChatGPTClient
-import com.example.abcallapp.network.ChatGPTService
-import com.example.abcallapp.network.CohereClient
-import com.example.abcallapp.network.CohereService
+import com.example.abcallapp.network.*
 import com.example.abcallapp.ui.notifications.NotificationManager
+import com.example.abcallapp.utils.UserPreferences
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
@@ -36,7 +42,10 @@ class ChatbotFragment : Fragment() {
 
     // Variable de control para la primera respuesta del bot
     private var isFirstBotResponse = true
+    private var knowledgeBaseContext: String? = null
 
+    // Contador para rastrear el número de interacciones del usuario
+    private var userMessageCount = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,18 +70,27 @@ class ChatbotFragment : Fragment() {
         adapter.notifyItemInserted(displayedMessages.size - 1)
         binding.chatbotRecyclerView.scrollToPosition(displayedMessages.size - 1)
 
+        // Cargar el contexto de la base de conocimiento
+        loadKnowledgeBaseContext()
+
         // Manejar el evento de clic del botón "Enviar"
         binding.sendButton.setOnClickListener {
             val userInput = binding.chatBotEditText.text.toString().trim()
             if (userInput.isNotEmpty()) {
+                userMessageCount++
                 // Añadir el mensaje del usuario a la conversación
                 addMessage(userInput, true)
-
                 // Limpiar el campo de entrada
                 binding.chatBotEditText.text.clear()
 
                 // Simular respuesta del bot
                 //simulateBotResponse(userMessage)
+                // Verifica si el mensaje contiene palabras clave o si es la sexta interacción
+                if (shouldShowPQRSuggestion(userInput)) {
+                    showPQRSuggestion()
+                } else {
+                    simulateBotResponse(userInput)
+                }
             }
         }
 
@@ -92,6 +110,74 @@ class ChatbotFragment : Fragment() {
         //    findNavController().navigate(R.id.navigation_home)
         //}
     }
+    private fun shouldShowPQRSuggestion(userInput: String): Boolean {
+        val keywords = listOf("PQR", "pqr", "Pqr", "poner un PQR", "dónde pongo un PQR")
+        val containsKeyword = keywords.any { keyword -> userInput.contains(keyword, ignoreCase = true) }
+        return containsKeyword || userMessageCount == 6
+    }
+    private fun showPQRSuggestion() {
+        val spannableMessage = SpannableString("Para poner un PQR, de click en el siguiente enlace:\nAbrir formulario de PQR")
+
+        // Configurar el enlace en el texto
+        val startIndex = spannableMessage.indexOf("Abrir formulario de PQR")
+        val endIndex = startIndex + "Abrir formulario de PQR".length
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                findNavController().navigate(R.id.navigation_create_pqr) // Navegar al fragmento de creación de PQR
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = ContextCompat.getColor(requireContext(), R.color.white) // Cambia el color del enlace
+                ds.isUnderlineText = true // Subrayar el enlace
+            }
+        }
+
+        spannableMessage.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        // Agregar el mensaje con SpannableString a displayedMessages
+        displayedMessages.add(ChatMessage(spannableMessage, false))
+        adapter.notifyItemInserted(displayedMessages.size - 1)
+        binding.chatbotRecyclerView.scrollToPosition(displayedMessages.size - 1)
+    }
+
+    private fun loadKnowledgeBaseContext() {
+        // Obtener el idToken de SharedPreferences
+        val userPrefs = UserPreferences.getInstance(requireContext())
+        val idToken = userPrefs.getIdToken()
+
+        if (idToken.isNullOrEmpty()) {
+            Log.e("ChatbotFragment", "No se encontró un idToken válido.")
+            return
+        }
+
+        val authHeader = "Bearer $idToken"
+        val service = knowledgebase_Api.retrofit.create(KnowledgebaseService::class.java)
+
+        val requestBody = KnowledgeBaseRequest(
+            title = "Preguntas",
+            content = "",
+            tags = listOf(4)
+        )
+        val call = service.getKnowledgeBaseAssigned(authHeader, requestBody)
+
+        call.enqueue(object : Callback<List<FAQ>> {
+            override fun onResponse(call: Call<List<FAQ>>, response: Response<List<FAQ>>) {
+                if (response.isSuccessful) {
+                    // Convertir la respuesta en un contexto de texto
+                    knowledgeBaseContext = response.body()?.joinToString("\n") {
+                        "Pregunta: ${it.title}\nRespuesta: ${it.content}"
+                    }
+                    Log.d("ChatbotFragment", "FAQs del servicio base de conocimiento: $knowledgeBaseContext")
+                }
+            }
+
+            override fun onFailure(call: Call<List<FAQ>>, t: Throwable) {
+                Log.e("ChatbotFragment", "Error al cargar el contexto de la base de conocimiento: ${t.message}")
+            }
+        })
+    }
     private fun updateDateTime() {
         val timeZone = TimeZone.getTimeZone("America/Bogota")
         val currentDate = Calendar.getInstance(timeZone).time
@@ -110,6 +196,7 @@ class ChatbotFragment : Fragment() {
         val userMessage = binding.chatBotEditText.text.toString()
 
         if (userMessage.isNotEmpty()) {
+            userMessageCount++
             // Agregar el mensaje del usuario a la lista
             displayedMessages.add(ChatMessage(userMessage, true))
             adapter.notifyItemInserted(displayedMessages.size - 1)
@@ -119,9 +206,13 @@ class ChatbotFragment : Fragment() {
             binding.chatBotEditText.text.clear()
             binding.chatBotEditText.hint = "" // Eliminar el hint
 
-            // respuesta del bot (mensaje chatgpt)
-            simulateBotResponse(userMessage)
-            //simulateBotResponse()
+            // Verificar si el mensaje contiene palabras clave relacionadas con PQR o si es la sexta interacción
+            if (shouldShowPQRSuggestion(userMessage)) {
+                showPQRSuggestion()
+            } else {
+                // Respuesta del bot (mensaje de Cohere)
+                simulateBotResponse(userMessage)
+            }
 
         }
     }
@@ -151,7 +242,7 @@ class ChatbotFragment : Fragment() {
         //val service = ChatGPTClient.retrofit.create(ChatGPTService::class.java)   acceso a servicio de chatGPT
         val service = CohereClient.retrofit.create(CohereService::class.java)
 
-        val apiKey = "Bearer 4FBgLHiMJTiHygmvXQ7S8Dg967i3Ludqg4xc5tFy"
+        val apiKey = "Bearer 4FBgLHiMJTiHygmvXQ7S8Dg967i3Ludqg4xc5tFy"  //API Cohere
         //val messages = listOf(
         //    ChatGPTMessage("system", "You are a customer service chatbot specialized in complaints, claims, and petitions."),
         //    ChatGPTMessage("user", userInput)
@@ -163,15 +254,16 @@ class ChatbotFragment : Fragment() {
         //    max_tokens = 50  // Limitar el número de tokens
         //)
 
-        // Cargar preguntas frecuentes desde JSON
-        val faqs = loadFAQsFromJSON()
-        // Convierte las preguntas frecuentes a un String de contexto
-        val faqsContext = faqs.joinToString("\n") { "Pregunta: ${it.title}\nRespuesta: ${it.content}" }
-        // Combina el contexto de preguntas frecuentes con la entrada del usuario
-        val prompt = "$faqsContext\n\nUsuario: $userInput\nBot:"
-        val requestBody = CohereRequest(
-            prompt = prompt
-        )
+        // Si se ha cargado el contexto de la base de conocimiento
+        val prompt = if (!knowledgeBaseContext.isNullOrEmpty()) {
+            "$knowledgeBaseContext\n\nUsuario: $userInput\nBot:"
+        } else {
+            "Usuario: $userInput\nBot:"
+        }
+
+        val requestBody = CohereRequest(prompt = prompt)
+        Log.d("ChatbotFragment", "el requestbody es: $requestBody")
+
         //val requestBody = CohereRequest(
         //    prompt = userInput
         //)
@@ -200,53 +292,18 @@ class ChatbotFragment : Fragment() {
             override fun onResponse(call: Call<CohereResponse>, response: Response<CohereResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val botReply = response.body()!!.generations.first().text
-                    val truncatedReply = botReply.split(" ").take(30).joinToString(" ") // Limita la respuesta a 30 palabras
-
-                    addMessage(truncatedReply, false)  // Muestra el mensaje del bot
+                    val truncatedReply = botReply.split(" ").take(30).joinToString(" ")
+                    addMessage(truncatedReply, false)
                 } else {
                     addMessage("Error: No se pudo obtener la respuesta del bot.", false)
                 }
             }
+
             override fun onFailure(call: Call<CohereResponse>, t: Throwable) {
-                addMessage("Error: ${t.message}", false)  // Muestra un error si la solicitud falla
+                addMessage("Error: ${t.message}", false)
             }
         })
 
-    }
-
-    // Función para cargar preguntas frecuentes desde un archivo JSON
-    private fun loadFAQsFromJSON(): List<FAQ> {
-        val faqs = mutableListOf<FAQ>()
-
-        try {
-            // Abre el archivo JSON desde res/raw/faqs.json
-            val inputStream: InputStream = resources.openRawResource(R.raw.faqs)
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
-
-            // Convierte el contenido del archivo a un objeto JSON
-            val jsonArray = JSONArray(jsonString)
-
-            // Itera sobre cada elemento en el array y convierte a FAQ
-            for (i in 0 until jsonArray.length()) {
-                val faqObject = jsonArray.getJSONObject(i)
-                val title = faqObject.getString("title")
-                val content = faqObject.getString("content")
-                val tagsArray = faqObject.getJSONArray("tags")
-
-                // Convierte el array de tags a una lista de strings
-                val tags = mutableListOf<String>()
-                for (j in 0 until tagsArray.length()) {
-                    tags.add(tagsArray.getString(j))
-                }
-
-                // Agrega el FAQ a la lista
-                faqs.add(FAQ(title, content, tags))
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        return faqs
     }
 
     override fun onDestroyView() {
