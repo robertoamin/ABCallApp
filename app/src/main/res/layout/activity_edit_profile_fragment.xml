@@ -7,18 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.EditProfileFragment">
 
-    <TextView
-        android:id="@+id/modificarLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titulo_modificar"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/userImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImage" />
 
     <!-- Imagen de fondo difuminada -->
 
@@ -80,6 +68,8 @@
         android:layout_height="63dp"
         android:layout_marginTop="30dp"
         android:hint="@string/nombre_usuario"
+        android:textColor="@color/gray_700"
+        android:textColorHint="@color/gray_700"
         app:boxBackgroundColor="@android:color/transparent"
         app:endIconMode="clear_text"
         app:endIconTint="@color/gray_700"
@@ -91,6 +81,8 @@
             android:id="@+id/userNameEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/gray_700"
+            android:textColorHint="@color/gray_700"
             tools:layout_editor_absoluteX="72dp"
             tools:layout_editor_absoluteY="465dp" />
 
@@ -105,6 +97,8 @@
         android:layout_marginTop="24dp"
         android:hint="@string/ingrese_comunicacion"
         android:inputType="none"
+        android:textColor="@color/gray_700"
+        android:textColorHint="@color/gray_700"
         app:boxBackgroundColor="@android:color/transparent"
         app:endIconTint="@color/gray_700"
         app:layout_constraintEnd_toEndOf="parent"

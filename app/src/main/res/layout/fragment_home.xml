@@ -24,10 +24,10 @@
         android:id="@+id/emptyMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="En este momento No tienes PQRs abiertos!"
+        android:text="@string/No_PQRs"
         android:textSize="25sp"
 
-        android:textColor="@color/teal_050"
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_gravity="center"
         android:visibility="gone"

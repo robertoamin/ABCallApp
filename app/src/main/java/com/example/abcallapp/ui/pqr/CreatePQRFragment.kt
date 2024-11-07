@@ -100,11 +100,9 @@ class CreatePQRFragment : Fragment() {
                         val pqrResponse = response.body()
                         if (pqrResponse != null && pqrResponse.status == "ok") {
                             Log.d("CreatePQR", "PQR creado exitosamente en el microservicio.")
-                            NotificationManager.addNotification("Nuevo PQR #234 Creado")
+                            NotificationManager.addNotification("Nuevo PQR #${pqrResponse.ticket_number} Creado")
 
-                            showSuccessDialog()
-
-
+                            showSuccessDialog(pqrResponse.ticket_number)
                         } else {
                             Log.e("CreatePQR", "Error en la respuesta del servidor: ${pqrResponse?.status}")
                             Toast.makeText(requireContext(), "Error en la creación del PQR", Toast.LENGTH_SHORT).show()
@@ -113,7 +111,6 @@ class CreatePQRFragment : Fragment() {
                         Log.e("CreatePQR", "Error al crear el PQR. Código de respuesta: ${response.code()}, Error: ${response.errorBody()?.string()}")
                         Toast.makeText(requireContext(), getString(R.string.PQR_error), Toast.LENGTH_SHORT).show()
                     }
-
                 }
 
                 override fun onFailure(call: Call<PQRResponse>, t: Throwable) {
@@ -127,20 +124,18 @@ class CreatePQRFragment : Fragment() {
         }
     }
 
-
-
     // Método para mostrar el diálogo de éxito
-    private fun showSuccessDialog() {
+    private fun showSuccessDialog(ticketNumber: String) {
         AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
             .setTitle(getString(R.string.success))
-            .setMessage(getString(R.string.PQR_success))
+            .setMessage(getString(R.string.PQR_success) + "\nTicket #: $ticketNumber")
             .setPositiveButton(getString(R.string.Accept)) { dialog, _ ->
                 dialog.dismiss()
                 requireActivity().onBackPressed() // Regresa a la pantalla anterior después de confirmar
             }
             .show()
-
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -7,7 +7,8 @@ data class PQR(
 )
 data class PQRResponse(
     val status: String,
-    val statusCode: Int
+    val statusCode: Int,
+    val ticket_number: String
 )
 
 

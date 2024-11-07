@@ -26,13 +26,13 @@
     <fragment
         android:id="@+id/navigation_create_pqr"
         android:name="com.example.abcallapp.ui.pqr.CreatePQRFragment"
-        android:label="Crear PQR"
+        android:label="@string/Crear_PQR"
         tools:layout="@layout/fragment_create_pqr" />
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.abcallapp.ui.profile.ProfileFragment"
-        android:label="Perfil"
+        android:label="@string/Perfil"
         tools:layout="@layout/activity_profile_fragment">
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
@@ -42,14 +42,14 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.abcallapp.ui.home.EditProfileFragment"
-        android:label="Modificar Perfil"
+        android:label="@string/Modificar_Perfil"
         tools:layout="@layout/activity_edit_profile_fragment" />
 
 
     <fragment
         android:id="@+id/detallePQRFragment"
         android:name="com.example.abcallapp.ui.pqr.DetallePQRFragment"
-        android:label="Detalle PQR"
+        android:label="@string/Detalle_PQR"
         tools:layout="@layout/fragment_detalle_pqr" />
 
     <action

@@ -1,5 +1,7 @@
 package com.example.abcallapp.adapters
 
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -42,9 +44,10 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
         } else {
             // Configura el texto del bot
             holder.messageTextView.apply {
-                text = chatMessage.text
+                text = chatMessage.text // Puede ser String o SpannableString
                 setTextColor(ContextCompat.getColor(context, R.color.teal_200))
                 setBackgroundResource(R.drawable.message_background_bot)
+                movementMethod = LinkMovementMethod.getInstance() // Habilita los enlaces clicables
             }
             holder.messageIcon.visibility = View.VISIBLE // Mostrar ícono para el bot
             (holder.itemView as LinearLayout).gravity = Gravity.START // Alinea a la izquierda
