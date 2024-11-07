@@ -61,7 +61,7 @@ class ChatbotFragment : Fragment() {
         updateDateTime()
 
         // Configurar el RecyclerView con el adaptador
-        adapter = ChatbotAdapter(displayedMessages)
+        adapter = ChatbotAdapter(displayedMessages, requireContext())
         binding.chatbotRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.chatbotRecyclerView.adapter = adapter
 

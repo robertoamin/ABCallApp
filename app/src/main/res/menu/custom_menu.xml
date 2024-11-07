@@ -4,8 +4,8 @@
     <!-- Elemento de menú con ID -->
     <item
         android:id="@+id/action_perfil"
-        android:icon="@drawable/perfil_icon"
+        android:icon="@drawable/usuariochat"
         android:title="Perfil"
         app:showAsAction="always"
-        app:iconTint="@color/gray_200" />
+        />
 </menu>

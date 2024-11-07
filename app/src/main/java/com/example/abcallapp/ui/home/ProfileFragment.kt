@@ -1,5 +1,6 @@
 package com.example.abcallapp.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -51,6 +52,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Cargar la imagen de perfil desde SharedPreferences
+        loadProfileImage()
         // Realizar la consulta GET al microservicio de cliente
         fetchClientDetails()
 
@@ -88,6 +91,14 @@ class ProfileFragment : Fragment() {
         startUpdatingTimeAndDate()
     }
 
+    private fun loadProfileImage() {
+        // Obtener el ID de la imagen de perfil almacenado en SharedPreferences
+        val sharedPrefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val userProfileImage = sharedPrefs.getInt("user_profile_image", R.drawable.usuariochat) // Imagen por defecto
+
+        // Configurar la imagen en el ImageView de perfil
+        binding.userImage.setImageResource(userProfileImage)
+    }
     private fun startUpdatingTimeAndDate() {
         val handler = Handler(Looper.getMainLooper())
         val runnable = object : Runnable {
