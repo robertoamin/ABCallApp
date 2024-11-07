@@ -116,11 +116,11 @@ class ChatbotFragment : Fragment() {
         return containsKeyword || userMessageCount == 6
     }
     private fun showPQRSuggestion() {
-        val spannableMessage = SpannableString("Para poner un PQR, de click en el siguiente enlace:\nAbrir formulario de PQR")
-
-        // Configurar el enlace en el texto
-        val startIndex = spannableMessage.indexOf("Abrir formulario de PQR")
-        val endIndex = startIndex + "Abrir formulario de PQR".length
+        val linkText = getString(R.string.pqr_link_text)
+        val messageText = getString(R.string.pqr_message, linkText)
+        val spannableMessage = SpannableString(messageText)
+        val startIndex = spannableMessage.indexOf(linkText)
+        val endIndex = startIndex + linkText.length
 
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
@@ -269,7 +269,7 @@ class ChatbotFragment : Fragment() {
         //)
         // Solo generar la notificación en la primera respuesta del bot
         if (isFirstBotResponse) {
-            NotificationManager.addNotification("Conversación con Bot iniciada")
+            NotificationManager.addNotification(getString(R.string.bot_conversation_started))
             isFirstBotResponse = false // Cambiar el estado para que no se repita
         }
 
@@ -290,12 +290,13 @@ class ChatbotFragment : Fragment() {
         // Modelo Cohere
         call.enqueue(object : Callback<CohereResponse> {
             override fun onResponse(call: Call<CohereResponse>, response: Response<CohereResponse>) {
+                val errorMessage = getString(R.string.bot_response_error)
                 if (response.isSuccessful && response.body() != null) {
                     val botReply = response.body()!!.generations.first().text
                     val truncatedReply = botReply.split(" ").take(30).joinToString(" ")
                     addMessage(truncatedReply, false)
                 } else {
-                    addMessage("Error: No se pudo obtener la respuesta del bot.", false)
+                    addMessage(errorMessage, false)
                 }
             }
 

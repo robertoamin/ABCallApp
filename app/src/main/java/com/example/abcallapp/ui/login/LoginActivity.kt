@@ -112,7 +112,9 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(exception: Exception) {
                 Log.e("Cognito", "Login failed: ${exception.localizedMessage}")
                 exception.printStackTrace()
-                Toast.makeText(this@LoginActivity, "Error en la autenticación: ${exception.localizedMessage}", Toast.LENGTH_LONG).show()
+                val authErrorMessage = getString(R.string.authentication_error, exception.localizedMessage)
+                Toast.makeText(this@LoginActivity, authErrorMessage, Toast.LENGTH_LONG).show()
+
             }
 
             override fun authenticationChallenge(continuation: ChallengeContinuation?) {

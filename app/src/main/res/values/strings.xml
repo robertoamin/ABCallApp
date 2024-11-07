@@ -47,6 +47,7 @@
     <string name="PQR_error">Error creating PQR</string>
     <string name="Crear_PQR">Create PQR</string>
     <string name="Detalle_PQR">PQR Details</string>
+    <string name="bot_conversation_started">Bot conversation started</string>
     <string name="PQR_get_error">Error obtaining PQR</string>
     <string name="No_PQRs">You currently have no open PQRs</string>
     <string name="success">Success</string>
@@ -60,4 +61,17 @@
     <string name="titulo_modificar">Edit Profile</string>
     <string name="Perfil">Profile</string>
     <string name="Modificar_Perfil">Edit Profile</string>
+    <string name="pqr_message">To open a PQR, click on the following link:\n%s1</string>
+    <string name="pqr_link_text">Open PQR form</string>
+    <string name="bot_response_error">Error: Failed to get bot response.</string>
+    <string name="enter_full_name">Enter full name"</string>
+    <string name="profile_updated">Profile Updated</string>
+    <string name="profile_update_error">Profile update error: %1$s</string>
+    <string name="unknown_error">Unknow error</string>
+    <string name="auth_token_error">Auth token Error</string>
+    <string name="auth_request_error">Authentication request Error.</string>
+    <string name="pqr_creation_error">PQR creation Error</string>
+    <string name="new_pqr_created">New PQR #%1$s Creaded</string>
+    <string name="network_error">Network Error: %1$s</string>
+    <string name="authentication_error">Authentication Error: %1$s</string>
 </resources>

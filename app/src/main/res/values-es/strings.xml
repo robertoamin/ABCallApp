@@ -50,6 +50,7 @@
     <string name="Detalle_PQR">Detalles PQR</string>
     <string name="No_PQRs">En este momento No tienes PQRs abiertos!</string>
     <string name="success">Exito</string>
+    <string name="bot_conversation_started">Conversación con Bot iniciada</string>
     <string name="PQR_success">Su PQR ha sido creado con éxito</string>
     <string name="Accept">Aceptar</string>
     <string name="current_time">Hora Actual</string>
@@ -60,4 +61,17 @@
     <string name="titulo_modificar">Modificar Perfil</string>
     <string name="Perfil">Perfil</string>
     <string name="Modificar_Perfil">Modificar Perfil</string>
+    <string name="pqr_message">Para poner un PQR, de click en el siguiente enlace:\n%s1</string>
+    <string name="pqr_link_text">Abrir formulario de PQR</string>
+    <string name="bot_response_error">Error: No se pudo obtener la respuesta del bot.</string>
+    <string name="enter_full_name">Por favor ingrese el nombre completo</string>
+    <string name="profile_updated">Perfil actualizado</string>
+    <string name="profile_update_error">Error al actualizar el perfil: %1$s</string>
+    <string name="unknown_error">Error desconocido</string>
+    <string name="auth_token_error">No se pudo obtener el token de autenticación</string>
+    <string name="auth_request_error">No se pudo autenticar la solicitud.</string>
+    <string name="pqr_creation_error">Error en la creación del PQR</string>
+    <string name="new_pqr_created">Nuevo PQR #%1$s Creado</string>
+    <string name="network_error">Error de red: %1$s</string>
+    <string name="authentication_error">Error en la autenticación: %1$s</string>
 </resources>
