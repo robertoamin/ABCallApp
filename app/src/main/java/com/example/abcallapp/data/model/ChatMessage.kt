@@ -2,9 +2,10 @@ package com.example.abcallapp.data.model
 
 
 data class ChatMessage(
-    val text: String,
-    val isUser: Boolean // Este campo indicará si el mensaje es del usuario o del bot
+    val text: CharSequence, // Cambiado de String a CharSequence
+    val isUser: Boolean
 )
+
 
 data class CohereRequest(
     val model: String = "command-xlarge-nightly", // Modelo gratuito de Cohere LLM

@@ -1,5 +1,7 @@
 package com.example.abcallapp.adapters
 
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +19,8 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
 
     class ChatMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val messageTextView: TextView = itemView.findViewById(R.id.messageTextView)
-        val messageIcon: ImageView = itemView.findViewById(R.id.messageIcon)
+        val botIcon: ImageView = itemView.findViewById(R.id.botIcon)
+        val userIcon: ImageView = itemView.findViewById(R.id.userIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatMessageViewHolder {
@@ -30,28 +33,29 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
         val chatMessage = messageList[position]
 
         if (chatMessage.isUser) {
-            // Configura el texto del usuario
+            // Configura el texto del usuario y la imagen del usuario a la derecha
             holder.messageTextView.apply {
                 text = chatMessage.text
                 setTextColor(ContextCompat.getColor(context, R.color.white))
                 setBackgroundResource(R.drawable.message_background_user)
             }
-            holder.messageIcon.visibility = View.GONE // Ocultar ícono del usuario
-            (holder.itemView as LinearLayout).gravity = Gravity.END // Alinea a la derecha
+            holder.botIcon.visibility = View.GONE // Ocultar ícono del bot
+            holder.userIcon.visibility = View.VISIBLE // Mostrar ícono del usuario
+            (holder.itemView as LinearLayout).gravity = Gravity.END // Alinear a la derecha
 
         } else {
-            // Configura el texto del bot
+            // Configura el texto del bot y la imagen del bot a la izquierda
             holder.messageTextView.apply {
                 text = chatMessage.text
                 setTextColor(ContextCompat.getColor(context, R.color.teal_200))
                 setBackgroundResource(R.drawable.message_background_bot)
+                movementMethod = LinkMovementMethod.getInstance() // Habilitar enlaces
             }
-            holder.messageIcon.visibility = View.VISIBLE // Mostrar ícono para el bot
-            (holder.itemView as LinearLayout).gravity = Gravity.START // Alinea a la izquierda
+            holder.botIcon.visibility = View.VISIBLE // Mostrar ícono del bot
+            holder.userIcon.visibility = View.GONE // Ocultar ícono del usuario
+            (holder.itemView as LinearLayout).gravity = Gravity.START // Alinear a la izquierda
         }
     }
-
-
 
     override fun getItemCount(): Int {
         return messageList.size

@@ -9,25 +9,29 @@
     tools:context=".ui.home.HomeFragment">
 
     <!-- Imagen de fondo que cubre toda la pantalla -->
+
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:alpha="0.3"
         android:scaleType="centerCrop"
         android:src="@drawable/fondo_appchat2"
-        android:alpha="0.3"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/emptyMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="En este momento No tienes PQRs abiertos!"
+        android:text="@string/No_PQRs"
         android:textSize="25sp"
 
-        android:textColor="@color/teal_050"
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_gravity="center"
         android:visibility="gone"
@@ -55,6 +59,20 @@
         tools:listitem="@layout/item_pqr" />
 
     <!-- Cuadro de texto para el chatbot "#80FFFFFF"-->
+
+    <TextView
+        android:id="@+id/chatBotLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="5dp"
+        android:text="ChatBot"
+        android:textColor="@android:color/white"
+        android:background="@color/gray_500"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/chatBotEditText"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/chatBotEditText"
         android:layout_width="293dp"
@@ -84,8 +102,9 @@
         android:layout_marginBottom="30dp"
         android:src="@drawable/add_24px"
         android:scaleType="centerInside"
-        android:elevation="8dp"
+        android:elevation="12dp"
         app:backgroundTint="@color/teal_200"
+        android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

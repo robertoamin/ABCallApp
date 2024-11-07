@@ -64,13 +64,12 @@ class CreatePQRFragment : Fragment() {
             val title = binding.tituloEditText.text.toString()
             val description = binding.descripcionEditText.text.toString()
             val type = binding.tipoPqrDropdown.text.toString()
-
-
+            // Mapea el valor de `type` a español antes de enviarlo
+            val typeInSpanish = mapTypeToSpanish(type)
             // Verificar que los campos y el idToken no sean nulos o estén vacíos
-            if (title.isNotEmpty() && description.isNotEmpty() && type.isNotEmpty()) {
+            if (title.isNotEmpty() && description.isNotEmpty() && typeInSpanish.isNotEmpty()) {
                 if (!idToken.isNullOrEmpty()) {
-                    // Crear el objeto PQR y llamar al servicio
-                    val nuevoPQR = PQR(title, description, type)
+                    val nuevoPQR = PQR(title, description, typeInSpanish)
                     enviarPQR(nuevoPQR, idToken)
                 } else {
                     Toast.makeText(requireContext(), "No se encontró un idToken válido.", Toast.LENGTH_SHORT).show()
@@ -100,47 +99,55 @@ class CreatePQRFragment : Fragment() {
                         val pqrResponse = response.body()
                         if (pqrResponse != null && pqrResponse.status == "ok") {
                             Log.d("CreatePQR", "PQR creado exitosamente en el microservicio.")
-                            NotificationManager.addNotification("Nuevo PQR #234 Creado")
+                            val notificationMessage = getString(R.string.new_pqr_created, pqrResponse.ticket_number)
+                            NotificationManager.addNotification(notificationMessage)
 
-                            showSuccessDialog()
 
-
+                            showSuccessDialog(pqrResponse.ticket_number)
                         } else {
                             Log.e("CreatePQR", "Error en la respuesta del servidor: ${pqrResponse?.status}")
-                            Toast.makeText(requireContext(), "Error en la creación del PQR", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), getString(R.string.pqr_creation_error), Toast.LENGTH_SHORT).show()
+
                         }
                     } else {
                         Log.e("CreatePQR", "Error al crear el PQR. Código de respuesta: ${response.code()}, Error: ${response.errorBody()?.string()}")
                         Toast.makeText(requireContext(), getString(R.string.PQR_error), Toast.LENGTH_SHORT).show()
                     }
-
                 }
 
                 override fun onFailure(call: Call<PQRResponse>, t: Throwable) {
                     Log.e("CreatePQR", "Error de red al intentar crear el PQR: ${t.message}")
-                    Toast.makeText(requireContext(), "Error de red: ${t.message}", Toast.LENGTH_SHORT).show()
+                    val networkErrorMessage = getString(R.string.network_error, t.message)
+                    Toast.makeText(requireContext(), networkErrorMessage, Toast.LENGTH_SHORT).show()
+
                 }
             })
         } else {
             Log.e("CreatePQR", "No se encontró un idToken válido.")
-            Toast.makeText(requireContext(), "No se pudo autenticar la solicitud.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.auth_request_error), Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
+    // Función para mapear `type` de inglés a español
+    private fun mapTypeToSpanish(type: String): String {
+        return when (type) {
+            "Request" -> "Peticion"
+            "Complaint" -> "Queja"
+            "Claim" -> "Reclamo"
+            else -> type // Si no coincide, devuelve el valor tal como está
+        }
+    }
     // Método para mostrar el diálogo de éxito
-    private fun showSuccessDialog() {
+    private fun showSuccessDialog(ticketNumber: String) {
         AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
             .setTitle(getString(R.string.success))
-            .setMessage(getString(R.string.PQR_success))
+            .setMessage(getString(R.string.PQR_success) + "\nTicket #: $ticketNumber")
             .setPositiveButton(getString(R.string.Accept)) { dialog, _ ->
                 dialog.dismiss()
                 requireActivity().onBackPressed() // Regresa a la pantalla anterior después de confirmar
             }
             .show()
-
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

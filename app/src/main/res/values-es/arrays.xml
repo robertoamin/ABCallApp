@@ -1,14 +1,13 @@
 <resources>
     <string-array name="tipo_pqr_opciones">
-        <item>Request</item>
-        <item>Complaint</item>
-        <item>Claim</item>
+        <item>Peticion</item>
+        <item>Queja</item>
+        <item>Reclamo</item>
     </string-array>
     <string-array name="tipo_comunicacion_opciones">
         <item>Email</item>
-        <item>Phone</item>
+        <item>Telefono</item>
         <item>Sms</item>
         <item>Chat</item>
     </string-array>
 </resources>
-
