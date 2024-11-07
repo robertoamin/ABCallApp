@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema personalizado basado en MaterialComponents sin ActionBar -->
-    <style name="Theme.YourAppName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.YourAppName" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Personalizaciones aquí, como colores y otros estilos -->
 
         <item name="colorPrimary">@color/white</item>

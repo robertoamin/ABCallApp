@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="start"
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <!-- Si el mensaje es del bot, el ícono aparecerá a la izquierda -->
+    <!-- Ícono del bot, mostrado a la izquierda del texto del bot -->
     <ImageView
-        android:id="@+id/messageIcon"
+        android:id="@+id/botIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center_vertical"
@@ -27,8 +26,18 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:padding="8dp"
-
         android:layout_gravity="center_vertical" />
+
+    <!-- Ícono del usuario, mostrado a la derecha del texto del usuario -->
+    <ImageView
+        android:id="@+id/userIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/usuariochat"
+        android:visibility="gone"/>
 </LinearLayout>
+
 
 

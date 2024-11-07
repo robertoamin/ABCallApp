@@ -73,11 +73,13 @@ class EditProfileFragment : Fragment() {
 
                 user.name = firstName
                 user.last_name = lastName
-                user.communication_type = tipoComunicacion
+                // Mapeo de tipo de comunicación antes de guardar
+                user.communication_type = mapCommunicationType(tipoComunicacion)
 
                 saveUserChanges(user)
             } else {
-                Toast.makeText(requireContext(), "Por favor ingrese el nombre completo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.enter_full_name), Toast.LENGTH_SHORT).show()
+
             }
         }
 
@@ -86,12 +88,16 @@ class EditProfileFragment : Fragment() {
             findNavController().navigateUp() // Regresa al fragmento anterior
         }
     }
-
+    // Función para mapear `communication_type` de inglés a español
+    private fun mapCommunicationType(type: String): String {
+        return if (type == "Phone") "Telefono" else type
+    }
     private fun saveUserChanges(userModificado: User) {
         val idToken = userPreferences.getIdToken()
 
         if (idToken.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "No se pudo obtener el token de autenticación", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.auth_token_error), Toast.LENGTH_SHORT).show()
+
             return
         }
 
@@ -101,17 +107,15 @@ class EditProfileFragment : Fragment() {
         call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
-                    // Guardar el usuario actualizado en las preferencias
                     userPreferences.saveUser(userModificado)
-
-                    Toast.makeText(requireContext(), "Perfil actualizado", Toast.LENGTH_SHORT).show()
-                    NotificationManager.addNotification("Perfil actualizado")
-
-                    findNavController().navigateUp() // Regresa al fragmento anterior
+                    Toast.makeText(requireContext(), getString(R.string.profile_updated), Toast.LENGTH_SHORT).show()
+                    NotificationManager.addNotification(getString(R.string.profile_updated))
+                    findNavController().navigateUp()
                 } else {
-                    val errorMessage = response.errorBody()?.string() ?: "Error desconocido"
-                    Toast.makeText(requireContext(), "Error al actualizar el perfil: $errorMessage", Toast.LENGTH_LONG).show()
+                    val errorMessage = response.errorBody()?.string() ?: getString(R.string.unknown_error)
+                    Toast.makeText(requireContext(), getString(R.string.profile_update_error, errorMessage), Toast.LENGTH_LONG).show()
                 }
+
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {

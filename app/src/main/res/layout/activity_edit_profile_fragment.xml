@@ -14,26 +14,26 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.5"
+
         android:scaleType="centerCrop"
         android:src="@drawable/front_appchat3"
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="-133dp" />
 
+    <!-- Nombre del usuario -->
     <ImageView
         android:id="@+id/userImage"
-        android:layout_width="142dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="72dp"
-        android:scaleType="centerCrop"
+        android:layout_width="167dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="52dp"
         android:alpha="0.5"
-        android:src="@drawable/foto_usuario"
+        android:scaleType="centerCrop"
+        android:src="@drawable/usuariochat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Nombre del usuario -->
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:text="@string/prompt_email"
-        android:textColor="@color/gray_700"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -68,8 +68,8 @@
         android:layout_height="63dp"
         android:layout_marginTop="30dp"
         android:hint="@string/nombre_usuario"
-        android:textColor="@color/gray_700"
-        android:textColorHint="@color/gray_700"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:boxBackgroundColor="@android:color/transparent"
         app:endIconMode="clear_text"
         app:endIconTint="@color/gray_700"
@@ -97,10 +97,10 @@
         android:layout_marginTop="24dp"
         android:hint="@string/ingrese_comunicacion"
         android:inputType="none"
-        android:textColor="@color/gray_700"
-        android:textColorHint="@color/gray_700"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:boxBackgroundColor="@android:color/transparent"
-        app:endIconTint="@color/gray_700"
+        app:endIconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameEditLayout">
@@ -111,6 +111,8 @@
             android:layout_height="wrap_content"
             android:entries="@array/tipo_comunicacion_opciones"
             android:popupBackground="#CCFFFFFF"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             tools:layout_editor_absoluteX="72dp"
             tools:layout_editor_absoluteY="465dp" />
 
@@ -140,7 +142,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:elevation="8dp"
-        android:textColor="@color/black"
+        android:textColor="@color/gray_500"
         android:textStyle="bold"
         app:backgroundTint="@color/teal_200"
         app:cornerRadius="20dp"

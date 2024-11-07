@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.abcallapp.R
 import com.example.abcallapp.databinding.ActivityHomeBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.appbar.MaterialToolbar
 
 class HomeActivity : AppCompatActivity() {
 
@@ -39,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 else -> {
                     // Muestra la flecha de regreso en otros fragmentos
-                    binding.topAppBar.setNavigationIcon(R.drawable.arrow_back_24px)
+                    binding.topAppBar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
                     binding.topAppBar.setNavigationOnClickListener {
                         onBackPressedDispatcher.onBackPressed()
                     }

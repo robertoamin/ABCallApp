@@ -22,15 +22,16 @@
 
         <ImageView
             android:id="@+id/Brand_view"
-            android:layout_width="776dp"
-            android:layout_height="1034dp"
+            android:layout_width="687dp"
+            android:layout_height="796dp"
             android:alpha="0.5"
             android:background="@color/gray_500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.573"
+            app:layout_constraintVertical_bias="0.682"
             app:srcCompat="@drawable/front_appchat"
             tools:srcCompat="@drawable/front_appchat3" />
 
@@ -160,7 +161,7 @@
             android:elevation="8dp"
             android:onClick="onLoginButtonClick"
             android:text="@string/login"
-            android:textColor="@color/black"
+            android:textColor="@color/gray_500"
             android:textStyle="bold"
             app:backgroundTint="@color/teal_200"
             app:cornerRadius="20dp" />
