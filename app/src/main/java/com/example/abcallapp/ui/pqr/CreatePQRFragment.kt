@@ -2,6 +2,7 @@ package com.example.abcallapp.ui.pqr
 
 
 import android.os.Bundle
+import android.text.InputFilter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,8 @@ class CreatePQRFragment : Fragment() {
         val userPreferences = UserPreferences.getInstance(requireContext())
         // Obtener el idToken
         val idToken = userPreferences.getIdToken()
+        // Limitar la longitud de la descripción a 500 caracteres
+        binding.descripcionEditText.filters = arrayOf(InputFilter.LengthFilter(500))
 
         // Inicializar el servicio de Retrofit
         pqrService = ApiClient.retrofit.create(PQRService::class.java)
