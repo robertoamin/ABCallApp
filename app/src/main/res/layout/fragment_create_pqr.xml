@@ -123,32 +123,36 @@
         android:id="@+id/cancelButton"
         android:layout_width="103dp"
         android:layout_height="50dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="70dp"
         android:elevation="8dp"
         android:text="@string/Cancelar"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/gray_700"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionInputLayout" />
 
     <!-- Botón Crear -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/createButton"
         android:layout_width="103dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="70dp"
         android:elevation="8dp"
+        android:text="@string/Enviar"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:backgroundTint="@color/teal_200"
         app:cornerRadius="20dp"
-        android:text="@string/Enviar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
