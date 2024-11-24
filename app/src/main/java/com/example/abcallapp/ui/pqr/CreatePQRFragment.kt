@@ -2,6 +2,7 @@ package com.example.abcallapp.ui.pqr
 
 
 import android.os.Bundle
+import android.text.InputFilter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,8 @@ class CreatePQRFragment : Fragment() {
         val userPreferences = UserPreferences.getInstance(requireContext())
         // Obtener el idToken
         val idToken = userPreferences.getIdToken()
+        // Limitar la longitud de la descripción a 500 caracteres
+        binding.descripcionEditText.filters = arrayOf(InputFilter.LengthFilter(500))
 
         // Inicializar el servicio de Retrofit
         pqrService = ApiClient.retrofit.create(PQRService::class.java)
@@ -64,12 +67,13 @@ class CreatePQRFragment : Fragment() {
             val title = binding.tituloEditText.text.toString()
             val description = binding.descripcionEditText.text.toString()
             val type = binding.tipoPqrDropdown.text.toString()
+            val channel = "APP"
             // Mapea el valor de `type` a español antes de enviarlo
             val typeInSpanish = mapTypeToSpanish(type)
             // Verificar que los campos y el idToken no sean nulos o estén vacíos
             if (title.isNotEmpty() && description.isNotEmpty() && typeInSpanish.isNotEmpty()) {
                 if (!idToken.isNullOrEmpty()) {
-                    val nuevoPQR = PQR(title, description, typeInSpanish)
+                    val nuevoPQR = PQR(title, description, typeInSpanish, channel)
                     enviarPQR(nuevoPQR, idToken)
                 } else {
                     Toast.makeText(requireContext(), "No se encontró un idToken válido.", Toast.LENGTH_SHORT).show()

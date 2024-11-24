@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val profileImages = listOf(
-        R.drawable.usuariochat2,
+        R.drawable.usuariochat,
         R.drawable.usuariochat3,
         R.drawable.usuariochat4,
         R.drawable.usuariochat5,
