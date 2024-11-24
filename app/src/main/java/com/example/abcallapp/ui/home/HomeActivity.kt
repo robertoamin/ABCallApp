@@ -1,5 +1,6 @@
 package com.example.abcallapp.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +17,13 @@ import com.google.android.material.appbar.MaterialToolbar
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-
+    private val profileImages = listOf(
+        R.drawable.usuariochat,
+        R.drawable.usuariochat3,
+        R.drawable.usuariochat4,
+        R.drawable.usuariochat5,
+        R.drawable.usuariochat6
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -92,6 +99,12 @@ class HomeActivity : AppCompatActivity() {
     // Cargar el menú de opciones en la barra superior
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.custom_menu, menu)  // Infla el menú personalizado
+        // Seleccionar una imagen aleatoria y establecerla en el ícono de perfil
+        val randomImage = profileImages.random()
+        val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        sharedPrefs.edit().putInt("user_profile_image", randomImage).apply()
+        menu?.findItem(R.id.action_perfil)?.icon = ContextCompat.getDrawable(this, randomImage)
+
         return true
     }
 

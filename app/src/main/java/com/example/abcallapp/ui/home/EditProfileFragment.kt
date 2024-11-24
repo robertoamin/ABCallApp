@@ -1,5 +1,6 @@
 package com.example.abcallapp.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,13 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Cargar la imagen del usuario desde SharedPreferences
+        val sharedPrefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val userProfileImage = sharedPrefs.getInt("user_profile_image", R.drawable.usuariochat) // Imagen por defecto
+
+        binding.userImage.setImageResource(userProfileImage) // Configura la imagen del usuario
+        binding.userImage.alpha = 0.5f // Ajuste de alpha para degradado
 
         // Establecer el nombre y el email en la UI
         val nombreCompleto = "${user.name} ${user.last_name ?: ""}"

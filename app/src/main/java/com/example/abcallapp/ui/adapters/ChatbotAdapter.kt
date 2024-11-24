@@ -1,5 +1,6 @@
 package com.example.abcallapp.adapters
 
+import android.content.Context
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.view.Gravity
@@ -14,14 +15,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.abcallapp.R
 import com.example.abcallapp.data.model.ChatMessage
 
-class ChatbotAdapter(private val messageList: List<ChatMessage>) :
+class ChatbotAdapter(private val messageList: List<ChatMessage>, private val context: Context) :
     RecyclerView.Adapter<ChatbotAdapter.ChatMessageViewHolder>() {
+
+    private val sharedPrefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+    private val userProfileImage = sharedPrefs.getInt("user_profile_image", R.drawable.usuariochat) // Imagen por defecto
 
     class ChatMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val messageTextView: TextView = itemView.findViewById(R.id.messageTextView)
         val botIcon: ImageView = itemView.findViewById(R.id.botIcon)
         val userIcon: ImageView = itemView.findViewById(R.id.userIcon)
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatMessageViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -33,27 +38,25 @@ class ChatbotAdapter(private val messageList: List<ChatMessage>) :
         val chatMessage = messageList[position]
 
         if (chatMessage.isUser) {
-            // Configura el texto del usuario y la imagen del usuario a la derecha
             holder.messageTextView.apply {
                 text = chatMessage.text
                 setTextColor(ContextCompat.getColor(context, R.color.white))
                 setBackgroundResource(R.drawable.message_background_user)
             }
-            holder.botIcon.visibility = View.GONE // Ocultar ícono del bot
-            holder.userIcon.visibility = View.VISIBLE // Mostrar ícono del usuario
-            (holder.itemView as LinearLayout).gravity = Gravity.END // Alinear a la derecha
-
+            holder.botIcon.visibility = View.GONE
+            holder.userIcon.visibility = View.VISIBLE
+            holder.userIcon.setImageResource(userProfileImage) // Configura la imagen del usuario
+            (holder.itemView as LinearLayout).gravity = Gravity.END
         } else {
-            // Configura el texto del bot y la imagen del bot a la izquierda
             holder.messageTextView.apply {
                 text = chatMessage.text
                 setTextColor(ContextCompat.getColor(context, R.color.teal_200))
                 setBackgroundResource(R.drawable.message_background_bot)
-                movementMethod = LinkMovementMethod.getInstance() // Habilitar enlaces
+                movementMethod = LinkMovementMethod.getInstance()
             }
-            holder.botIcon.visibility = View.VISIBLE // Mostrar ícono del bot
-            holder.userIcon.visibility = View.GONE // Ocultar ícono del usuario
-            (holder.itemView as LinearLayout).gravity = Gravity.START // Alinear a la izquierda
+            holder.botIcon.visibility = View.VISIBLE
+            holder.userIcon.visibility = View.GONE
+            (holder.itemView as LinearLayout).gravity = Gravity.START
         }
     }
 

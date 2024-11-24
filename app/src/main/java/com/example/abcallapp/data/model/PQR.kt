@@ -3,21 +3,14 @@ package com.example.abcallapp.data.model
 data class PQR(
     val title: String,
     val description: String,
-    val type: String // Peticion, Queja, Reclamo
+    val type: String,// Peticion, Queja, Reclamo
+    val channel:String
 )
 data class PQRResponse(
     val status: String,
     val statusCode: Int,
     val ticket_number: String
 )
-
-
-
-//data class PQRItem(
-//    val date: String,
-//    val title: String,
-//    val status: String
-//)
 data class PQRItem(
     val id: Int,
     val client_id: Int,
