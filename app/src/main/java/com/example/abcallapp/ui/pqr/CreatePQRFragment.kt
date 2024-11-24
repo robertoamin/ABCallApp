@@ -67,12 +67,13 @@ class CreatePQRFragment : Fragment() {
             val title = binding.tituloEditText.text.toString()
             val description = binding.descripcionEditText.text.toString()
             val type = binding.tipoPqrDropdown.text.toString()
+            val channel = "APP"
             // Mapea el valor de `type` a español antes de enviarlo
             val typeInSpanish = mapTypeToSpanish(type)
             // Verificar que los campos y el idToken no sean nulos o estén vacíos
             if (title.isNotEmpty() && description.isNotEmpty() && typeInSpanish.isNotEmpty()) {
                 if (!idToken.isNullOrEmpty()) {
-                    val nuevoPQR = PQR(title, description, typeInSpanish)
+                    val nuevoPQR = PQR(title, description, typeInSpanish, channel)
                     enviarPQR(nuevoPQR, idToken)
                 } else {
                     Toast.makeText(requireContext(), "No se encontró un idToken válido.", Toast.LENGTH_SHORT).show()

@@ -1,158 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_500"
-    tools:context=".ui.pqr.CreatePQRFragment">
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tituloInputLayout"
-        style="@style/OutlinedBox"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/Hint_Titulo_pqr"
-        android:textColorHint="@android:color/white"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tituloEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white" />
-</com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="match_parent"
+        android:background="@color/gray_500"
+        tools:context=".ui.pqr.CreatePQRFragment">
 
 
-    <!-- Campo de Fecha no editable -->
-    <TextView
-        android:id="@+id/fechaTextView"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center_vertical"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:hint="@string/Fecha"
-        android:background="@drawable/rounded_edittext_background"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloInputLayout" />
-
-    <!-- Dropdown Tipo de PQR -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tipoPqrInputLayout"
-        style="@style/Dropbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/Tipo_pqr"
-        android:inputType="none"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fechaTextView"
-       >
-
-        <AutoCompleteTextView
-            android:id="@+id/tipoPqrDropdown"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tituloInputLayout"
+            style="@style/OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/tipo_pqr_opciones"
-            android:popupBackground="@color/gray_500"
-            android:textColor="@color/white"
-            android:textColorHint="@android:color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Campo Descripción -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descripcionInputLayout"
-        style="@style/OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="218dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/Descripcion"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/white"
-        app:hintTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipoPqrInputLayout">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/Hint_Titulo_pqr"
+            android:textColorHint="@android:color/white"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/descripcionEditText"
+            android:id="@+id/tituloEditText"
             android:layout_width="match_parent"
-            android:layout_height="188dp"
-            android:gravity="top|start"
-            android:imeOptions="actionDone"
-            android:inputType="textMultiLine"
-
-            android:overScrollMode="always"
-            android:scrollbars="vertical"
-
-            android:scrollHorizontally="false"
+            android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Botón Cancelar -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/cancelButton"
-        android:layout_width="103dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="70dp"
-        android:elevation="8dp"
-        android:text="@string/Cancelar"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:backgroundTint="@color/gray_700"
-        app:cornerRadius="20dp"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcionInputLayout" />
+        <!-- Campo de Fecha no editable -->
+        <TextView
+            android:id="@+id/fechaTextView"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:hint="@string/Fecha"
+            android:background="@drawable/rounded_edittext_background"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloInputLayout" />
 
-    <!-- Botón Crear -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/createButton"
-        android:layout_width="103dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="70dp"
-        android:elevation="8dp"
-        android:text="@string/Enviar"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:backgroundTint="@color/teal_200"
-        app:cornerRadius="20dp"
+        <!-- Dropdown Tipo de PQR -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tipoPqrInputLayout"
+            style="@style/Dropbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/Tipo_pqr"
+            android:inputType="none"
+            android:textColorHint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fechaTextView"
+           >
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcionInputLayout" />
+            <AutoCompleteTextView
+                android:id="@+id/tipoPqrDropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/tipo_pqr_opciones"
+                android:popupBackground="@color/gray_500"
+                android:textColor="@color/white"
+                android:textColorHint="@android:color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Campo Descripción -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/descripcionInputLayout"
+            style="@style/OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="218dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/Descripcion"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/white"
+            app:hintTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipoPqrInputLayout">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descripcionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="188dp"
+                android:gravity="top|start"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+
+                android:overScrollMode="always"
+                android:scrollbars="vertical"
+
+                android:scrollHorizontally="false"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón Cancelar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelButton"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="@string/Cancelar"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@color/gray_700"
+            app:cornerRadius="20dp"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/createButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionInputLayout" />
+
+        <!-- Botón Crear -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createButton"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            android:elevation="8dp"
+            android:text="@string/Enviar"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:backgroundTint="@color/teal_200"
+            app:cornerRadius="20dp"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionInputLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
