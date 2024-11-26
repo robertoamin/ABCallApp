@@ -21,5 +21,6 @@ data class PQRItem(
     val estimated_close_date: String,
     val user_sub: String,
     val type: String,
-    val communication_type: String
+    val communication_type: String,
+    val ticket_number: String
 )

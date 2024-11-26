@@ -107,6 +107,7 @@ class HomeFragment : Fragment() {
                 putString("state", pqrItem.status)
                 putString("estimated_close_date", pqrItem.estimated_close_date)
                 putString("description", pqrItem.description)
+                putString("ticket_number", pqrItem.ticket_number)
             }
             findNavController().navigate(R.id.action_home_to_detallePQRFragment, bundle)
         }
