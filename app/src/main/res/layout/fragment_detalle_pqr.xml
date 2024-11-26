@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="204dp"
         android:text="Sept 17, 2024"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -76,20 +76,33 @@
         android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/companyTextView" />
+    <!-- Ticket Number -->
 
+    <TextView
+        android:id="@+id/ticketNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:text="Ticket: #123456"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detalleFechaTextView" />
+
+    <!-- Detalle -->
     <TextView
         android:id="@+id/companyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="28dp"
         android:text="Empresa: Movistar"
         android:textColor="@color/white"
         android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detalleFechaTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/ticketNumberTextView" />
 
-    <!-- Detalle -->
     <TextView
         android:id="@+id/descripcionTextView"
         android:layout_width="0dp"

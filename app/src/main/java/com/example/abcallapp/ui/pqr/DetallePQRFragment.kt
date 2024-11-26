@@ -35,6 +35,7 @@ class DetallePQRFragment : Fragment() {
         val estado = arguments?.getString("state")
         val estimatedCloseDate = arguments?.getString("estimated_close_date")
         val description = arguments?.getString("description")
+        val ticketNumber = arguments?.getString("ticket_number")
 
 // Limitar el texto del subject a los primeros 20 caracteres, manejando el caso en que sea null
         val truncatedSubject = if ((subject?.length ?: 0) > 20) {
@@ -49,6 +50,7 @@ class DetallePQRFragment : Fragment() {
         binding.estadoTextView.text = "Estado:  $estado"
         binding.fechaCierreTextView.text = "Fecha de cierre estimada:  $estimatedCloseDate"
         binding.descripcionTextView.text = "Detalle:  $description"
+        binding.ticketNumberTextView.text = "Ticket: #$ticketNumber"
 
         // Configurar el botón flotante para navegar al fragmento de creación de PQR
         binding.createPqrButton.setOnClickListener {
